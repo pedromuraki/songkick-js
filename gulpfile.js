@@ -23,7 +23,7 @@ gulp.task('bs', function() {
   });
   gulp.watch('src/scss/*.scss', ['sass', browsersync.reload]);
   gulp.watch('*.html').on('change', browsersync.reload);
-  gulp.watch('src/js/bundle/app.bundle.js').on('change', browsersync.reload);
+  gulp.watch('src/js/bundle/bundle.js').on('change', browsersync.reload);
 });
 
 /* css */
