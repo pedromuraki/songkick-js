@@ -1,0 +1,50 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "a boilerplate for projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installpackages": "npm i --save-dev gulp browser-sync run-sequence gulp-rename gulp-sourcemaps gulp-sass gulp-autoprefixer gulp-concat-css gulp-group-css-media-queries gulp-clean-css gulp-concat gulp-uglify gulp-imagemin imagemin-pngquant babel-core babel-loader babel-preset-env babel-register babel-polyfill eslint webpack webpack-cli normalize.css",
+    "lint": "./node_modules/.bin/eslint ./src/js/app.js",
+    "bundle": "./node_modules/.bin/webpack",
+    "bundle:watch": "npm run bundle -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedromuraki/boilerplate.git"
+  },
+  "author": "Pedro Muraki <pedromuraki@gmail.com> (https://github.com/pedromuraki)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedromuraki/boilerplate/issues"
+  },
+  "homepage": "https://github.com/pedromuraki/boilerplate#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "browser-sync": "^2.24.4",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "imagemin-pngquant": "^5.1.0",
+    "normalize.css": "^8.0.0",
+    "run-sequence": "^2.2.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
+}

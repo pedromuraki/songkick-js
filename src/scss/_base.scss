@@ -1,0 +1,145 @@
+/* normalize */
+@import 'node_modules/normalize.css/normalize';
+
+/* rem mixin */
+/* Baseline, measured in pixels
+The value should be the same as the font-size value for the html element
+If the html element's font-size is set to 62.5% (of the browser's default font-size of 16px),
+then the variable below would be 10px. */
+$baseline-px: 10px;
+
+@mixin rem($property, $px-values) {
+  /* Convert the baseline into rems */
+  $baseline-rem: $baseline-px / 1rem * 1;
+  /* Print the first line in pixel values */
+  #{$property}: $px-values;
+  /* If there is only one (numeric) value, return the property/value line for it. */
+  @if type-of($px-values) == "number" {
+    #{$property}: $px-values / $baseline-rem;
+  }
+  @else {
+    /* Create an empty list that we can dump values into */
+    $rem-values: ();
+    @each $value in $px-values {
+      /* If the value is zero or not a number, return it */
+      @if $value == 0 or type-of( $value ) != "number" {
+        $rem-values: append($rem-values, $value);
+      }
+      @else {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
+    /* Return the property and its list of converted values */
+    #{$property}: $rem-values;
+  }
+}
+
+/* fonts mixins */
+@mixin ant($fs) {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  @include rem(font-size, $fs - 2px);
+  @media (min-width: 576px) {
+    @include rem(font-size, $fs - 1px);
+  }
+  @media (min-width: 768px) {
+    @include rem(font-size, $fs);
+  }
+}
+
+@mixin inconsolata {
+  font-family: 'Inconsolata', monospace;
+  letter-spacing: 1px;
+}
+
+@mixin inc($fs) {
+  @include inconsolata;
+  font-weight: 400;
+  @include rem(font-size, $fs - 2px);
+  @media (min-width: 576px) {
+    @include rem(font-size, $fs - 1px);
+  }
+  @media (min-width: 768px) {
+    @include rem(font-size, $fs);
+  }
+}
+
+@mixin inc-b($fs) {
+  @include inconsolata;
+  font-weight: 700;
+  @include rem(font-size, $fs - 2px);
+  @media (min-width: 576px) {
+    @include rem(font-size, $fs - 1px);
+  }
+  @media (min-width: 768px) {
+    @include rem(font-size, $fs);
+  }
+}
+
+/* color variables */
+$dark-gray: #2a2a2a;
+$default-gray: #757575;
+$default-orange: #f2644a;
+$videos: #e85353;
+$releases: #f2c750;
+$blog: #f2644a;
+$artists: #48c4ad;
+$events: #fa41a0;
+$gallery: #62ab2d;
+
+/* global settings & resets */
+html {
+  font-size: 62.5%;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, p, figure {
+  margin: 0;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  cursor: pointer;
+  outline: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* utils */
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.italic {
+  font-style: italic !important;
+}
+
+.bold {
+  font-weight: 700 !important;
+}
+
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
