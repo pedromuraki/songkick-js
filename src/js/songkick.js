@@ -18,25 +18,37 @@ class Songkick {
     // onloadstart
     // onload
 
-    /* set url */
-    // let optionalparamsMarkup = '';
-    // Object.entries(options.optionalParams).forEach(([key, value]) => {
-    //   optionalparamsMarkup += `&${key}=${value}`;
-    // });
-    // const requestUrl = `http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
-    // console.log(requestUrl);
-    this.handleRequest(options, this.setUrl(options));
+    this.handleRequest(options, this.setUrl('up-events', options, 'calendar'));
   }
-  setUrl(options) {
+  getPastEvents(options) {
+    this.handleRequest(options, this.setUrl('past-events', options, 'gigography'));
+  }
+  getDetails(options) {
+    // from *
+    // id *
+    this.handleRequest(options, this.setUrl('details', options));
+  }
+
+  setUrl(urlType, options) {
+    /*
+      urlType *
+        'events' or 'details'
+      options *
+        from
+        id
+    */
+
     /* set optional params */
     let optionalparamsMarkup = '';
-    Object.entries(options.optionalParams).forEach(([key, value]) => {
-      optionalparamsMarkup += `&${key}=${value}`;
-    });
+    if (options.optionalParams) {
+      Object.entries(options.optionalParams).forEach(([key, value]) => {
+        optionalparamsMarkup += `&${key}=${value}`;
+      });
+    }
     /* return the request url */
-    return `http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
-    // console.log(requestUrl);
-    // return requestUrl;
+    if (urlType === 'up-events') return `http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
+    if (urlType === 'past-events') return `http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
+    if (urlType === 'details') return `http://api.songkick.com/api/3.0/${options.from}/${options.id}.json?apikey=${this.options.apiKey}`;
   }
   handleRequest(options, requestUrl) {
     /* make the request */

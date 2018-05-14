@@ -18,3 +18,22 @@ songkick.getUpcomingEvents({
 });
 
 
+songkick.getDetails({
+  from: 'events',
+  id: '3037536',
+  onload: () => {
+    console.log(songkick.data);
+  }
+});
+
+songkick.getPastEvents({
+  from: 'artists',
+  id: '379603',
+  // optionalParams: {
+  //   per_page: 3,
+  //   page: 1,
+  // },
+  onload: () => {
+    console.log(songkick.data);
+  }
+});
