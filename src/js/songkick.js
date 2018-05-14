@@ -6,7 +6,9 @@ class Songkick {
   }
   getUpcomingEvents(options) {
     // from *
+      // artists, venues, metro_areas, users
     // id *
+      // obs: for users, set username as id
     // optionalParams
       // min_date
       // max_date
@@ -17,16 +19,26 @@ class Songkick {
     // onload
 
     /* set url */
+    // let optionalparamsMarkup = '';
+    // Object.entries(options.optionalParams).forEach(([key, value]) => {
+    //   optionalparamsMarkup += `&${key}=${value}`;
+    // });
+    // const requestUrl = `http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
+    // console.log(requestUrl);
+    this.handleRequest(options, this.setUrl(options));
+  }
+  setUrl(options) {
+    /* set optional params */
     let optionalparamsMarkup = '';
     Object.entries(options.optionalParams).forEach(([key, value]) => {
       optionalparamsMarkup += `&${key}=${value}`;
     });
-    const requestUrl = `http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
-    console.log(requestUrl);
-
-    this.makeRequestAndSetEvents(options, requestUrl);
+    /* return the request url */
+    return `http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
+    // console.log(requestUrl);
+    // return requestUrl;
   }
-  makeRequestAndSetEvents(options, requestUrl) {
+  handleRequest(options, requestUrl) {
     /* make the request */
     const request = new XMLHttpRequest();
     request.open('GET', requestUrl);
