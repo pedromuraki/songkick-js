@@ -11,5 +11,6 @@ songkick.getUpcomingEvents({
   // },
   onload: () => {
     console.log(songkick.data);
+    console.log(songkick.requesUrl);
   },
 });

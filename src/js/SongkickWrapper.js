@@ -68,8 +68,7 @@ class SongkickWrapper {
       Object.entries(options.optionalParams).forEach(([key, value]) => optionalparamsMarkup += `&${key}=${value}`);
 
     /* return the request url */
-    console.log(`http://api.songkick.com/api/3.0/${options.from}/${options.id}${urlType}.json?${reason}apikey=${this._APIKEY}${optionalparamsMarkup}`);
-    return `http://api.songkick.com/api/3.0/${options.from}/${options.id}${urlType}.json?${reason}apikey=${this._APIKEY}${optionalparamsMarkup}`;
+    return this._requestUrl = `http://api.songkick.com/api/3.0/${options.from}/${options.id}${urlType}.json?${reason}apikey=${this._APIKEY}${optionalparamsMarkup}`;
     // let requestUrl;
     // if (urlType === 'up-events') requestUrl = `http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
     // if (urlType === 'past-events') requestUrl =  `http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
@@ -77,7 +76,6 @@ class SongkickWrapper {
     // console.log(requestUrl);
     // return requestUrl;
   }
-
   _makeRequest(url, options) {
     /*
     url *
@@ -107,6 +105,9 @@ class SongkickWrapper {
 
   get data() {
     return this._data;
+  }
+  get requesUrl() {
+    return this._requestUrl;
   }
 }
 
