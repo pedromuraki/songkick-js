@@ -4,9 +4,11 @@ class SongkickWrapper {
     /*
     this._APIKEY *
     this._data (defined after a request)
+    this._requestUrl (defined after a request)
     */
   }
 
+  // UPCOMING EVENTS
   getUpcomingEvents(options) {
     /*
     options: {
@@ -27,55 +29,75 @@ class SongkickWrapper {
       onload
     }
     */
-    this._makeRequest(this._setUrl(options, '/calendar'), options);
+    const reason = options.reason ? `reason=${options.reason}&` : '';
+    this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
   }
+
+  // PAST EVENTS
   getPastEvents(options) {
     /*
     options: {
       from *
         artists, users
-      ... same as getUpcomingEvents
+      id *
+        obs: for users, set username as id
+      optionalParams: {
+        min_date
+        max_date
+        page
+        per_page
+        order
+      }
+      onloadstart
+      onload
     }
     */
-    this._makeRequest(this._setUrl(options, '/gigography'), options);
+    this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
   }
+
+  // DETAILS (FROM ARTISTS, EVENTS OR VENUES)
   getDetails(options) {
     /*
     options: {
       from *
-        artists, events, venues,
+        artists, events, venues
       id *
+      onloadstart
+      onload
     }
     */
-    this._makeRequest(this._setUrl(options), options);
+    this._makeRequest(`https://api.songkick.com/api/3.0/${options.from}/${options.id}.json?apikey=${this._APIKEY}`, options);
   }
 
-  _setUrl(options, urlType = '') {
+  // USER TRACKINGS (OF METROS AREAS OR ARTISTS)
+  getUserTrackings(options) {
     /*
     options: {
-      from *
-        artists, venues, metro_areas, users
-      id *
-        obs: for users, set username as id
+      username *
+      trackingObject *
+        metro_areas, artists
+      optionalParams: {
+        page
+        per_page
+        fields
+        created_after
+      }
+      onloadstart
+      onload
     }
-    urlType
-      /calendar, /gigography
     */
-    const reason = options.reason ? `reason=${options.reason}&` : '';
-    /* set optional params */
-    let optionalparamsMarkup = '';
-    if (options.optionalParams)
-      Object.entries(options.optionalParams).forEach(([key, value]) => optionalparamsMarkup += `&${key}=${value}`);
-
-    /* return the request url */
-    return this._requestUrl = `http://api.songkick.com/api/3.0/${options.from}/${options.id}${urlType}.json?${reason}apikey=${this._APIKEY}${optionalparamsMarkup}`;
-    // let requestUrl;
-    // if (urlType === 'up-events') requestUrl = `http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
-    // if (urlType === 'past-events') requestUrl =  `http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this.options.apiKey}${optionalparamsMarkup}`;
-    // if (urlType === 'details') requestUrl = `http://api.songkick.com/api/3.0/${options.from}/${options.id}.json?apikey=${this.options.apiKey}`;
-    // console.log(requestUrl);
-    // return requestUrl;
+    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
   }
+
+
+  // HELPERS
+  _optionalParamsMarkup(optionalParams) {
+    let optionalparamsMarkup = '';
+    if (optionalParams)
+      Object.entries(optionalParams).forEach(([key, value]) => optionalparamsMarkup += `&${key}=${value}`);
+    return optionalparamsMarkup;
+  }
+
   _makeRequest(url, options) {
     /*
     url *
@@ -95,6 +117,7 @@ class SongkickWrapper {
       const status = request.status;
       if (status >= 200 && status < 400) {
         this._data = JSON.parse(request.responseText);
+        this._requestUrl = url;
         if (options.onload) options.onload();
       }
     };
@@ -103,10 +126,13 @@ class SongkickWrapper {
     request.send();
   }
 
+
+  // GETTERS
   get data() {
     return this._data;
   }
-  get requesUrl() {
+
+  get requestUrl() {
     return this._requestUrl;
   }
 }

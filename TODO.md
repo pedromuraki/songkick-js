@@ -5,5 +5,5 @@
   - similar artists
   - search
 - verificar se é necessário aplicar programação defensiva
-- testar
-
+- testar todos os metodos com todos os parametros
+  - se possivel testar com mocha e chai
