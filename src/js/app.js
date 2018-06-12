@@ -43,11 +43,12 @@ const songkick = new SongkickWrapper('KwvChI9jW9D3aYSd');
 //   },
 // });
 
-songkick.getUserTrackings({
+songkick.isUserTracking({
   username: 'mariane-marcelino',
-  trackingObject: 'metro_areas',
+  trackingObject: 'artist',
+  id: '7295284',
   onload: () => {
-    console.log('getUserTrackings')
+    console.log('isUserTracking')
     console.log(songkick.data);
     console.log(songkick.requestUrl);
   },

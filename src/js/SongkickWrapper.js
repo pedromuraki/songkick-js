@@ -89,6 +89,39 @@ class SongkickWrapper {
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
   }
 
+  // USER MUTED ARTISTS
+  getUserMutedArtists(options) {
+    /*
+    options: {
+      username *
+      optionalParams: {
+        page
+        per_page
+        fields
+        created_after
+      }
+      onloadstart
+      onload
+    }
+    */
+    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
+  }
+
+  // IS USER TRACKING
+  isUserTracking(options) {
+    /*
+    options: {
+      username *
+      trackingObject *
+        metro_area, artist, event
+      id *
+      onloadstart
+      onload
+    }
+    */
+    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/trackings/${options.trackingObject}:${options.id}.json?apikey=${this._APIKEY}`, options);
+  }
+
 
   // HELPERS
   _optionalParamsMarkup(optionalParams) {
@@ -119,6 +152,10 @@ class SongkickWrapper {
         this._data = JSON.parse(request.responseText);
         this._requestUrl = url;
         if (options.onload) options.onload();
+        console.log(request.status);
+      }
+      if (status === 404) {
+        console.log('erro 404');
       }
     };
 
