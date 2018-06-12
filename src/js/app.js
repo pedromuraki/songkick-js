@@ -43,15 +43,14 @@ const songkick = new SongkickWrapper('KwvChI9jW9D3aYSd');
 //   },
 // });
 
-songkick.isUserTracking({
-  username: 'mariane-marcelino',
-  trackingObject: 'artist',
-  id: '72952843123131231',
+songkick.getSimilarArtists({
+  id: '7295284',
   onloadstart: () => {
     console.log('load start');
   },
   onsuccess: () => {
     console.log('success');
+    console.log(songkick.data);
   },
   on404: () => {
     console.log('404');

@@ -33,7 +33,6 @@ class SongkickWrapper {
     const reason = options.reason ? `reason=${options.reason}&` : '';
     this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
   }
-
   // PAST EVENTS
   getPastEvents(options) {
     /*
@@ -92,7 +91,6 @@ class SongkickWrapper {
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
   }
-
   // USER MUTED ARTISTS
   getUserMutedArtists(options) {
     /*
@@ -111,7 +109,6 @@ class SongkickWrapper {
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
   }
-
   // IS USER TRACKING
   isUserTracking(options) {
     /*
@@ -128,6 +125,22 @@ class SongkickWrapper {
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/trackings/${options.trackingObject}:${options.id}.json?apikey=${this._APIKEY}`, options);
   }
 
+  // SIMILAR ARTISTS
+  getSimilarArtists(options) {
+    /*
+    options: {
+      id *
+      optionalParams: {
+        page
+        per_page
+      }
+      onloadstart
+      onsuccess
+      on404
+    }
+    */
+    this._makeRequest(`https://api.songkick.com/api/3.0/artists/${options.id}/similar_artists.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
+  }
 
   // HELPERS
   _optionalParamsMarkup(optionalParams) {
