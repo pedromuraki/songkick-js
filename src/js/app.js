@@ -46,10 +46,14 @@ const songkick = new SongkickWrapper('KwvChI9jW9D3aYSd');
 songkick.isUserTracking({
   username: 'mariane-marcelino',
   trackingObject: 'artist',
-  id: '7295284',
-  onload: () => {
-    console.log('isUserTracking')
-    console.log(songkick.data);
-    console.log(songkick.requestUrl);
+  id: '72952843123131231',
+  onloadstart: () => {
+    console.log('load start');
   },
+  onsuccess: () => {
+    console.log('success');
+  },
+  on404: () => {
+    console.log('404');
+  }
 });

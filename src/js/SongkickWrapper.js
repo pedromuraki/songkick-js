@@ -26,7 +26,8 @@ class SongkickWrapper {
         order
       }
       onloadstart
-      onload
+      onsuccess
+      on404
     }
     */
     const reason = options.reason ? `reason=${options.reason}&` : '';
@@ -49,7 +50,8 @@ class SongkickWrapper {
         order
       }
       onloadstart
-      onload
+      onsuccess
+      on404
     }
     */
     this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
@@ -63,7 +65,8 @@ class SongkickWrapper {
         artists, events, venues
       id *
       onloadstart
-      onload
+      onsuccess
+      on404
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/${options.from}/${options.id}.json?apikey=${this._APIKEY}`, options);
@@ -83,7 +86,8 @@ class SongkickWrapper {
         created_after
       }
       onloadstart
-      onload
+      onsuccess
+      on404
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
@@ -101,7 +105,8 @@ class SongkickWrapper {
         created_after
       }
       onloadstart
-      onload
+      onsuccess
+      on404
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
@@ -116,7 +121,8 @@ class SongkickWrapper {
         metro_area, artist, event
       id *
       onloadstart
-      onload
+      onsuccess
+      on404
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/trackings/${options.trackingObject}:${options.id}.json?apikey=${this._APIKEY}`, options);
@@ -136,26 +142,26 @@ class SongkickWrapper {
     url *
     options: {
       onloadstart
-      onload
+      onsuccess
+      on404
     }
     */
     /* make the request */
     const request = new XMLHttpRequest();
     request.open('GET', url);
 
-    /* event handlers */
+    /* callbacks */
     if (options.onloadstart) request.onloadstart = () => options.onloadstart();
 
     request.onload = () => {
       const status = request.status;
-      if (status >= 200 && status < 400) {
-        this._data = JSON.parse(request.responseText);
-        this._requestUrl = url;
-        if (options.onload) options.onload();
-        console.log(request.status);
-      }
+      this._data = JSON.parse(request.responseText);
+      this._requestUrl = url;
+
+      if (status === 200 && options.onsuccess) options.onsuccess();
       if (status === 404) {
-        console.log('erro 404');
+        console.log(`Error: ${this._data.resultsPage.error.message}`);
+        if (options.on404) options.on404();
       }
     };
 
