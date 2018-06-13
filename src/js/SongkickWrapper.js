@@ -31,7 +31,7 @@ class SongkickWrapper {
     }
     */
     const reason = options.reason ? `reason=${options.reason}&` : '';
-    this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
+    this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
   // PAST EVENTS
   getPastEvents(options) {
@@ -53,7 +53,7 @@ class SongkickWrapper {
       on404
     }
     */
-    this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
+    this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
 
   // DETAILS (FROM ARTISTS, EVENTS OR VENUES)
@@ -89,7 +89,7 @@ class SongkickWrapper {
       on404
     }
     */
-    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
+    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
   // USER MUTED ARTISTS
   getUserMutedArtists(options) {
@@ -107,7 +107,7 @@ class SongkickWrapper {
       on404
     }
     */
-    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
+    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
   // IS USER TRACKING
   isUserTracking(options) {
@@ -139,15 +139,43 @@ class SongkickWrapper {
       on404
     }
     */
-    this._makeRequest(`https://api.songkick.com/api/3.0/artists/${options.id}/similar_artists.json?apikey=${this._APIKEY}${this._optionalParamsMarkup(options.optionalParams)}`, options);
+    this._makeRequest(`https://api.songkick.com/api/3.0/artists/${options.id}/similar_artists.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
+  }
+
+  // SEARCH
+  searchEvents(options) {
+    /*
+    options: {
+      searchBy: {
+        artist_name (required if location not provided)
+          artist+name
+        location (required if artist_name not provided)
+          sk:<id>, geo:<lat>,<lng>, ip:<ip>, clientip
+      }
+      optionalParams: {
+        min_date
+          YYYY-MM-DD
+        max_date
+          YYYY-MM-DD
+        type
+          'Concert', 'Festival'
+        page
+        per_page
+      }
+      onloadstart
+      onsuccess
+      on404
+    }
+    */
+    this._makeRequest(`https://api.songkick.com/api/3.0/events.json?apikey=${this._APIKEY}${this._paramsMarkup(options.searchBy)}${this._paramsMarkup(options.optionalParams)}`, options);
   }
 
   // HELPERS
-  _optionalParamsMarkup(optionalParams) {
-    let optionalparamsMarkup = '';
-    if (optionalParams)
-      Object.entries(optionalParams).forEach(([key, value]) => optionalparamsMarkup += `&${key}=${value}`);
-    return optionalparamsMarkup;
+  _paramsMarkup(params) {
+    let paramsMarkup = '';
+    if (params)
+      Object.entries(params).forEach(([key, value]) => paramsMarkup += `&${key}=${value}`);
+    return paramsMarkup;
   }
 
   _makeRequest(url, options) {

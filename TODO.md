@@ -1,7 +1,5 @@
 - criar metodos que faltam:
-  - setlists (não estou encontrando mais)
-  - similar artists
   - search
-- verificar se é necessário aplicar programação defensiva
-- testar todos os metodos com todos os parametros
-  - se possivel testar com mocha e chai
+- dividir filters e optionalParams
+- aplicar programação defensiva
+- testar com mocha e chai
