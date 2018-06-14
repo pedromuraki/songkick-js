@@ -32,11 +32,14 @@ class SongkickWrapper {
     */
 
     /* check required params */
-    if (!options.from || !options.id) console.error('Required parameters missing. See library documentation.');
+    // if (!options.from || !options.id) console.error('Required parameters missing. See library documentation.');
     /* check if "from" value is valid */
-    if (options.from !== 'artists' && options.from !== 'venues' && options.from !== 'metro_areas' && options.from !== 'users') console.error('Invalid "from" parameter. See library documentation.');
+    // if (options.from !== 'artists' && options.from !== 'venues' && options.from !== 'metro_areas' && options.from !== 'users') console.error('Invalid "from" parameter. See library documentation.');
     /* check required "reason" param for "users" and check if value is valid */
-    if ((options.from === 'users' && !options.reason) || (options.reason !== 'tracked_artist' && options.reason !== 'attendance')) console.error('Invalid or missing "reason" parameter. See library documentation.');
+    // if ((options.from === 'users' && !options.reason) || (options.reason !== 'tracked_artist' && options.reason !== 'attendance')) console.error('Invalid or missing "reason" parameter. See library documentation.');
+
+    this._checkRequiredParams([options.from, options.id]);
+    this._checkParamValue(options.from, ['artists', 'venues', 'metro_areas', 'users']);
 
     const reason = options.reason ? `reason=${options.reason}&` : '';
     this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
@@ -273,6 +276,18 @@ class SongkickWrapper {
 
     /* send the request */
     request.send();
+  }
+
+  _checkRequiredParams(params) {
+    params.forEach((param) => {
+      if (!param) console.error('Required parameters missing. See library documentation.');
+    });
+  }
+  _checkParamValue(paramValue, acceptedValues) {
+    const isValid = acceptedValues.some((acceptedValue) => {
+      return paramValue === acceptedValue;
+    });
+    if (!isValid) console.error(`"${paramValue}" is not a valid value. See library documentation.`);
   }
 
 
