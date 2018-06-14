@@ -136,13 +136,13 @@ class SongkickWrapper {
       }
       onloadstart
       onsuccess
-      on404
+      onerror
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/artists/${options.id}/similar_artists.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
 
-  // SEARCH
+  // SEARCH EVENTS
   searchEvents(options) {
     /*
     options: {
@@ -164,11 +164,68 @@ class SongkickWrapper {
       }
       onloadstart
       onsuccess
-      on404
+      onerror
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/events.json?apikey=${this._APIKEY}${this._paramsMarkup(options.searchBy)}${this._paramsMarkup(options.optionalParams)}`, options);
   }
+  // SEARCH ARTISTS
+  searchArtists(options) {
+    /*
+    options: {
+      query*
+        artist+name
+      optionalParams: {
+        page
+        per_page
+      }
+      onloadstart
+      onsuccess
+      onerror
+    }
+    */
+    this._makeRequest(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`, options);
+  }
+  // SEARCH VENUES
+  searchVenues(options) {
+    /*
+    options: {
+      query*
+        venue+name
+      optionalParams: {
+        page
+        per_page
+      }
+      onloadstart
+      onsuccess
+      onerror
+    }
+    */
+    this._makeRequest(`https://api.songkick.com/api/3.0/search/venues.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`, options);
+  }
+  // SEARCH LOCATIONS
+  searchLocations(options) {
+    /*
+    options: {
+      searchBy: {
+        query (required if location not provided)
+          location+name
+        location (required if query not provided)
+          geo:<lat>,<lng>, ip:<ip>, clientip
+      }
+      optionalParams: {
+        page
+        per_page
+      }
+      onloadstart
+      onsuccess
+      onerror
+    }
+    */
+    const searchBy = options.searchBy.query ? `query=${options.searchBy.query}` : `location=${options.searchBy.location}`;
+    this._makeRequest(`https://api.songkick.com/api/3.0/search/locations.json?${searchBy}&apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
+  }
+
 
   // HELPERS
   _paramsMarkup(params) {

@@ -2,22 +2,22 @@ import SongkickWrapper from './SongkickWrapper';
 
 const songkick = new SongkickWrapper('KwvChI9jW9D3aYSd');
 
-songkick.searchEvents({
-  searchBy: {
-    location: 'sk:27274',
-  },
+songkick.getUpcomingEvents({
+  from: 'users',
+  id: 'pedromuraki',
+  reason: 'tracked_artist',
   optionalParams: {
-    type: 'Concert',
+    min_date: 'dasdas'
   },
-  onloadstart: () => {
-    console.log('load start');
-  },
+  // onloadstart: () => {
+  //   console.log('load start');
+  // },
   onsuccess: () => {
-    console.log('success');
+    // console.log('success');
     console.log(songkick.data);
     console.log(songkick.requestUrl);
   },
-  on404: () => {
-    console.log('404');
-  }
+  // onerror: () => {
+  //   console.log('404');
+  // }
 });

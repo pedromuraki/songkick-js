@@ -1,5 +1,4 @@
-- criar metodos que faltam:
-  - search
-- dividir filters e optionalParams
 - aplicar programação defensiva
 - testar com mocha e chai
+- documentar
+- verificar se precisa de babel polyfill
