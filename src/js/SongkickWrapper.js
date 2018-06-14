@@ -27,9 +27,17 @@ class SongkickWrapper {
       }
       onloadstart
       onsuccess
-      on404
+      onerror
     }
     */
+
+    /* check required params */
+    if (!options.from || !options.id) console.error('Required parameters missing. See library documentation.');
+    /* check if "from" value is valid */
+    if (options.from !== 'artists' && options.from !== 'venues' && options.from !== 'metro_areas' && options.from !== 'users') console.error('Invalid "from" parameter. See library documentation.');
+    /* check required "reason" param for "users" and check if value is valid */
+    if ((options.from === 'users' && !options.reason) || (options.reason !== 'tracked_artist' && options.reason !== 'attendance')) console.error('Invalid or missing "reason" parameter. See library documentation.');
+
     const reason = options.reason ? `reason=${options.reason}&` : '';
     this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
@@ -50,7 +58,7 @@ class SongkickWrapper {
       }
       onloadstart
       onsuccess
-      on404
+      onerror
     }
     */
     this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
@@ -65,7 +73,7 @@ class SongkickWrapper {
       id *
       onloadstart
       onsuccess
-      on404
+      onerror
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/${options.from}/${options.id}.json?apikey=${this._APIKEY}`, options);
@@ -86,7 +94,7 @@ class SongkickWrapper {
       }
       onloadstart
       onsuccess
-      on404
+      onerror
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
@@ -104,7 +112,7 @@ class SongkickWrapper {
       }
       onloadstart
       onsuccess
-      on404
+      onerror
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
@@ -119,7 +127,7 @@ class SongkickWrapper {
       id *
       onloadstart
       onsuccess
-      on404
+      onerror
     }
     */
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/trackings/${options.trackingObject}:${options.id}.json?apikey=${this._APIKEY}`, options);
@@ -241,7 +249,7 @@ class SongkickWrapper {
     options: {
       onloadstart
       onsuccess
-      on404
+      onerror
     }
     */
     /* make the request */
@@ -257,9 +265,9 @@ class SongkickWrapper {
       this._requestUrl = url;
 
       if (status === 200 && options.onsuccess) options.onsuccess();
-      if (status === 404) {
-        console.log(`Error: ${this._data.resultsPage.error.message}`);
-        if (options.on404) options.on404();
+      if (status === 400 || status === 404) {
+        console.error(`Error: ${this._data.resultsPage.error.message}`);
+        if (options.onerror) options.onerror();
       }
     };
 
