@@ -40,6 +40,10 @@ class SongkickWrapper {
 
     this._checkRequiredParams([options.from, options.id]);
     this._checkParamValue(options.from, ['artists', 'venues', 'metro_areas', 'users']);
+    if (options.from === 'users') {
+      this._checkRequiredParams([options.reason]);
+      this._checkParamValue(options.reason, ['tracked_artist', 'attendance']);
+    }
 
     const reason = options.reason ? `reason=${options.reason}&` : '';
     this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
@@ -64,6 +68,9 @@ class SongkickWrapper {
       onerror
     }
     */
+    this._checkRequiredParams([options.from, options.id]);
+    this._checkParamValue(options.from, ['artists', 'users']);
+
     this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
 
@@ -79,6 +86,9 @@ class SongkickWrapper {
       onerror
     }
     */
+    this._checkRequiredParams([options.from, options.id]);
+    this._checkParamValue(options.from, ['artists', 'venues', 'events']);
+
     this._makeRequest(`https://api.songkick.com/api/3.0/${options.from}/${options.id}.json?apikey=${this._APIKEY}`, options);
   }
 
@@ -100,6 +110,9 @@ class SongkickWrapper {
       onerror
     }
     */
+    this._checkRequiredParams([options.username, options.trackingObject]);
+    this._checkParamValue(options.trackingObject, ['metro_areas', 'artists']);
+
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
   // USER MUTED ARTISTS
@@ -118,6 +131,8 @@ class SongkickWrapper {
       onerror
     }
     */
+    this._checkRequiredParams([options.username]);
+
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
   // IS USER TRACKING
@@ -133,6 +148,9 @@ class SongkickWrapper {
       onerror
     }
     */
+    this._checkRequiredParams([options.username, options.trackingObject, options.id]);
+    this._checkParamValue(options.trackingObject, ['metro_area', 'artist', 'event']);
+
     this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/trackings/${options.trackingObject}:${options.id}.json?apikey=${this._APIKEY}`, options);
   }
 
@@ -150,6 +168,8 @@ class SongkickWrapper {
       onerror
     }
     */
+    this._checkRequiredParams([options.id]);
+
     this._makeRequest(`https://api.songkick.com/api/3.0/artists/${options.id}/similar_artists.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
 
@@ -178,6 +198,9 @@ class SongkickWrapper {
       onerror
     }
     */
+    if (!options.searchBy || (!options.searchBy.artist_name && !options.searchBy.location)) console.error('Required parameter(s) missing. See library documentation.');
+    if (Object.keys(options.searchBy).length > 3) console.error('Invalid parameter(s). See library documentation.');
+
     this._makeRequest(`https://api.songkick.com/api/3.0/events.json?apikey=${this._APIKEY}${this._paramsMarkup(options.searchBy)}${this._paramsMarkup(options.optionalParams)}`, options);
   }
   // SEARCH ARTISTS
@@ -195,6 +218,8 @@ class SongkickWrapper {
       onerror
     }
     */
+    this._checkRequiredParams([options.query]);
+
     this._makeRequest(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`, options);
   }
   // SEARCH VENUES
@@ -212,6 +237,8 @@ class SongkickWrapper {
       onerror
     }
     */
+    this._checkRequiredParams([options.query]);
+
     this._makeRequest(`https://api.songkick.com/api/3.0/search/venues.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`, options);
   }
   // SEARCH LOCATIONS
@@ -233,6 +260,9 @@ class SongkickWrapper {
       onerror
     }
     */
+    if (!options.searchBy || (!options.searchBy.query && !options.searchBy.location)) console.error('Required parameter(s) missing. See library documentation.');
+    if (Object.keys(options.searchBy).length > 1) console.error('Invalid parameter(s). See library documentation.');
+
     const searchBy = options.searchBy.query ? `query=${options.searchBy.query}` : `location=${options.searchBy.location}`;
     this._makeRequest(`https://api.songkick.com/api/3.0/search/locations.json?${searchBy}&apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
   }
@@ -280,7 +310,7 @@ class SongkickWrapper {
 
   _checkRequiredParams(params) {
     params.forEach((param) => {
-      if (!param) console.error('Required parameters missing. See library documentation.');
+      if (!param) console.error('Required parameter(s) missing. See library documentation.');
     });
   }
   _checkParamValue(paramValue, acceptedValues) {

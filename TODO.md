@@ -1,4 +1,5 @@
-- aplicar programação defensiva
+- aplicar metodos de verificação para todos os metodos principais
 - testar com mocha e chai
 - documentar
 - verificar se precisa de babel polyfill
+- minificar e otimizar para todos os formatos e usos
