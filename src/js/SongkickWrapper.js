@@ -3,7 +3,6 @@ class SongkickWrapper {
     this._APIKEY = key;
     /*
     this._APIKEY *
-    this._data (defined after a request)
     this._requestUrl (defined after a request)
     */
   }
@@ -25,19 +24,8 @@ class SongkickWrapper {
         per_page
         order
       }
-      onloadstart
-      onsuccess
-      onerror
     }
     */
-
-    /* check required params */
-    // if (!options.from || !options.id) console.error('Required parameters missing. See library documentation.');
-    /* check if "from" value is valid */
-    // if (options.from !== 'artists' && options.from !== 'venues' && options.from !== 'metro_areas' && options.from !== 'users') console.error('Invalid "from" parameter. See library documentation.');
-    /* check required "reason" param for "users" and check if value is valid */
-    // if ((options.from === 'users' && !options.reason) || (options.reason !== 'tracked_artist' && options.reason !== 'attendance')) console.error('Invalid or missing "reason" parameter. See library documentation.');
-
     this._checkRequiredParams([options.from, options.id]);
     this._checkParamValue(options.from, ['artists', 'venues', 'metro_areas', 'users']);
     if (options.from === 'users') {
@@ -46,7 +34,7 @@ class SongkickWrapper {
     }
 
     const reason = options.reason ? `reason=${options.reason}&` : '';
-    this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
+    return this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
   }
   // PAST EVENTS
   getPastEvents(options) {
@@ -63,15 +51,12 @@ class SongkickWrapper {
         per_page
         order
       }
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     this._checkRequiredParams([options.from, options.id]);
     this._checkParamValue(options.from, ['artists', 'users']);
 
-    this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
+    return this._makeRequest(`http://api.songkick.com/api/3.0/${options.from}/${options.id}/gigography.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
   }
 
   // DETAILS (FROM ARTISTS, EVENTS OR VENUES)
@@ -81,15 +66,12 @@ class SongkickWrapper {
       from *
         artists, events, venues
       id *
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     this._checkRequiredParams([options.from, options.id]);
     this._checkParamValue(options.from, ['artists', 'venues', 'events']);
 
-    this._makeRequest(`https://api.songkick.com/api/3.0/${options.from}/${options.id}.json?apikey=${this._APIKEY}`, options);
+    return this._makeRequest(`https://api.songkick.com/api/3.0/${options.from}/${options.id}.json?apikey=${this._APIKEY}`);
   }
 
   // USER TRACKINGS (OF METROS AREAS OR ARTISTS)
@@ -105,15 +87,12 @@ class SongkickWrapper {
         fields
         created_after
       }
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     this._checkRequiredParams([options.username, options.trackingObject]);
     this._checkParamValue(options.trackingObject, ['metro_areas', 'artists']);
 
-    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
+    return this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
   }
   // USER MUTED ARTISTS
   getUserMutedArtists(options) {
@@ -126,14 +105,11 @@ class SongkickWrapper {
         fields
         created_after
       }
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     this._checkRequiredParams([options.username]);
 
-    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
+    return this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
   }
   // IS USER TRACKING
   isUserTracking(options) {
@@ -143,15 +119,12 @@ class SongkickWrapper {
       trackingObject *
         metro_area, artist, event
       id *
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     this._checkRequiredParams([options.username, options.trackingObject, options.id]);
     this._checkParamValue(options.trackingObject, ['metro_area', 'artist', 'event']);
 
-    this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/trackings/${options.trackingObject}:${options.id}.json?apikey=${this._APIKEY}`, options);
+    return this._makeRequest(`https://api.songkick.com/api/3.0/users/${options.username}/trackings/${options.trackingObject}:${options.id}.json?apikey=${this._APIKEY}`);
   }
 
   // SIMILAR ARTISTS
@@ -163,14 +136,11 @@ class SongkickWrapper {
         page
         per_page
       }
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     this._checkRequiredParams([options.id]);
 
-    this._makeRequest(`https://api.songkick.com/api/3.0/artists/${options.id}/similar_artists.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
+    return this._makeRequest(`https://api.songkick.com/api/3.0/artists/${options.id}/similar_artists.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
   }
 
   // SEARCH EVENTS
@@ -193,15 +163,12 @@ class SongkickWrapper {
         page
         per_page
       }
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     if (!options.searchBy || (!options.searchBy.artist_name && !options.searchBy.location)) console.error('Required parameter(s) missing. See library documentation.');
     if (Object.keys(options.searchBy).length > 3) console.error('Invalid parameter(s). See library documentation.');
 
-    this._makeRequest(`https://api.songkick.com/api/3.0/events.json?apikey=${this._APIKEY}${this._paramsMarkup(options.searchBy)}${this._paramsMarkup(options.optionalParams)}`, options);
+    return this._makeRequest(`https://api.songkick.com/api/3.0/events.json?apikey=${this._APIKEY}${this._paramsMarkup(options.searchBy)}${this._paramsMarkup(options.optionalParams)}`);
   }
   // SEARCH ARTISTS
   searchArtists(options) {
@@ -213,14 +180,11 @@ class SongkickWrapper {
         page
         per_page
       }
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     this._checkRequiredParams([options.query]);
 
-    this._makeRequest(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`, options);
+    return this._makeRequest(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`);
   }
   // SEARCH VENUES
   searchVenues(options) {
@@ -232,14 +196,11 @@ class SongkickWrapper {
         page
         per_page
       }
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     this._checkRequiredParams([options.query]);
 
-    this._makeRequest(`https://api.songkick.com/api/3.0/search/venues.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`, options);
+    return this._makeRequest(`https://api.songkick.com/api/3.0/search/venues.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`);
   }
   // SEARCH LOCATIONS
   searchLocations(options) {
@@ -255,16 +216,13 @@ class SongkickWrapper {
         page
         per_page
       }
-      onloadstart
-      onsuccess
-      onerror
     }
     */
     if (!options.searchBy || (!options.searchBy.query && !options.searchBy.location)) console.error('Required parameter(s) missing. See library documentation.');
     if (Object.keys(options.searchBy).length > 1) console.error('Invalid parameter(s). See library documentation.');
 
     const searchBy = options.searchBy.query ? `query=${options.searchBy.query}` : `location=${options.searchBy.location}`;
-    this._makeRequest(`https://api.songkick.com/api/3.0/search/locations.json?${searchBy}&apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`, options);
+    return this._makeRequest(`https://api.songkick.com/api/3.0/search/locations.json?${searchBy}&apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
   }
 
 
@@ -276,36 +234,27 @@ class SongkickWrapper {
     return paramsMarkup;
   }
 
-  _makeRequest(url, options) {
-    /*
-    url *
-    options: {
-      onloadstart
-      onsuccess
-      onerror
-    }
-    */
-    /* make the request */
-    const request = new XMLHttpRequest();
-    request.open('GET', url);
-
-    /* callbacks */
-    if (options.onloadstart) request.onloadstart = () => options.onloadstart();
-
-    request.onload = () => {
-      const status = request.status;
-      this._data = JSON.parse(request.responseText);
+  _makeRequest(url) {
+    return new Promise((resolve, reject) => {
       this._requestUrl = url;
 
-      if (status === 200 && options.onsuccess) options.onsuccess();
-      if (status === 400 || status === 404) {
-        console.error(`Error: ${this._data.resultsPage.error.message}`);
-        if (options.onerror) options.onerror();
-      }
-    };
+      var req = new XMLHttpRequest();
+      req.open('GET', url);
 
-    /* send the request */
-    request.send();
+      req.onload = () => {
+        if (req.status == 200) {
+          resolve(JSON.parse(req.responseText).resultsPage);
+        } else {
+          reject(Error(req.statusText));
+        }
+      };
+
+      req.onerror = () => {
+        reject(Error('Network Error'));
+      };
+
+      req.send();
+    });
   }
 
   _checkRequiredParams(params) {
@@ -313,6 +262,7 @@ class SongkickWrapper {
       if (!param) console.error('Required parameter(s) missing. See library documentation.');
     });
   }
+
   _checkParamValue(paramValue, acceptedValues) {
     const isValid = acceptedValues.some((acceptedValue) => {
       return paramValue === acceptedValue;
@@ -322,10 +272,6 @@ class SongkickWrapper {
 
 
   // GETTERS
-  get data() {
-    return this._data;
-  }
-
   get requestUrl() {
     return this._requestUrl;
   }
