@@ -1,4 +1,4 @@
-- aplicar metodos de verificação para todos os metodos principais
+- estudar promise
 - testar com mocha e chai
 - documentar
 - verificar se precisa de babel polyfill
