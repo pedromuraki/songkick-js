@@ -9,37 +9,51 @@ describe('SongkickWrapper', () => {
     expect(songkick).to.be.an.instanceof(SongkickWrapper);
   });
 
-  context('SongkickWrapper properties', () => {
+  context('Properties', () => {
     it('Should define a property _APIKEY when the SongkickWrapper class is instantiated', () => {
       expect(songkick).to.have.property('_APIKEY', 'KwvChI9jW9D3aYSd');
     });
 
-    it.skip('Should define a property _requestUrl when a request is made', () => {
+    it.skip('Should define a property _requestUrl when a request is made after calling some of the main methods', () => {
       songkick.getUpcomingEvents({ from: 'artists', id: '379603' });
       expect(songkick).to.have.property('_requestUrl');
     });
   });
 
-  context('SongkickWrapper methods', () => {
-    it('Should exist a method to get the upcoming events (getUpcomingEvents)', () => {
-      expect(songkick).to.have.property('getUpcomingEvents').that.is.a('function');
-    });
-    it('Should exist a method to get the past events (getPastEvents)', () => {
-      expect(songkick).to.have.property('getPastEvents').that.is.a('function');
+  context('Methods', () => {
+    context('Main methods', () => {
+      context('getUpcomingEvents', () => {
+        it('Should exist the method getUpcomingEvents', () => {
+          expect(songkick).to.have.property('getUpcomingEvents').that.is.a('function');
+        });
+      });
+      context('getPastEvents', () => {
+        it('Should exist the method getPastEvents', () => {
+          expect(songkick).to.have.property('getPastEvents').that.is.a('function');
+        });
+      });
     });
 
     context('Helper methods', () => {
-      it('Should exist a helper method to make the request (_makeRequest)', () => {
-        expect(songkick).to.have.property('_makeRequest').that.is.a('function');
+      context('_makeRequest', () => {
+        it('Should exist the helper method _makeRequest', () => {
+          expect(songkick).to.have.property('_makeRequest').that.is.a('function');
+        });
       });
-      it('Should exist a helper method to write the params markup that will be included in the request url (_paramsMarkup)', () => {
-        expect(songkick).to.have.property('_paramsMarkup').that.is.a('function');
+      context('_paramsMarkup', () => {
+        it('Should exist the helper method _paramsMarkup', () => {
+          expect(songkick).to.have.property('_paramsMarkup').that.is.a('function');
+        });
       });
-      it('Should exist a helper method to check if the required params were passed in the main method (_checkRequiredParams)', () => {
-        expect(songkick).to.have.property('_checkRequiredParams').that.is.a('function');
+      context('_checkRequiredParams', () => {
+        it('Should exist the helper method _checkRequiredParams', () => {
+          expect(songkick).to.have.property('_checkRequiredParams').that.is.a('function');
+        });
       });
-      it('Should exist a helper method to check if the required params have accepted values (_checkParamValue)', () => {
-        expect(songkick).to.have.property('_checkParamValue').that.is.a('function');
+      context('_checkParamValue', () => {
+        it('Should exist the helper method _checkParamValue', () => {
+          expect(songkick).to.have.property('_checkParamValue').that.is.a('function');
+        });
       });
     });
   });
