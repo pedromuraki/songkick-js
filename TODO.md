@@ -1,5 +1,5 @@
 - estudar promise
 - testar com mocha e chai
 - documentar
-- verificar se precisa de babel polyfill
+- verificar se precisa de babel polyfill e limpar package.json
 - minificar e otimizar para todos os formatos e usos
