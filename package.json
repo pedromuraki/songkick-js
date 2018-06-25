@@ -4,8 +4,8 @@
   "description": "a boilerplate for projects",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests/* --require babel-register",
-    "test:watch": "./node_modules/mocha/bin/mocha tests/* --require babel-register --watch",
+    "test": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill",
+    "test:watch": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill --watch",
     "test:coverage": "nyc npm test",
     "installpackages": "npm i --save-dev gulp browser-sync run-sequence gulp-rename gulp-sourcemaps gulp-sass gulp-autoprefixer gulp-concat-css gulp-group-css-media-queries gulp-clean-css gulp-concat gulp-uglify gulp-imagemin imagemin-pngquant babel-core babel-loader babel-preset-env babel-register babel-polyfill eslint webpack webpack-cli normalize.css",
     "lint": "./node_modules/.bin/eslint ./src/js/SongkickWrapper.js",
@@ -13,8 +13,13 @@
     "bundle:watch": "npm run bundle -- --watch"
   },
   "nyc": {
-    "reporter": ["text", "html"],
-    "exclude": ["tests/*"]
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/*"
+    ]
   },
   "repository": {
     "type": "git",
@@ -34,6 +39,7 @@
     "babel-register": "^6.26.0",
     "browser-sync": "^2.24.4",
     "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0",
@@ -53,7 +59,11 @@
     "normalize.css": "^8.0.0",
     "nyc": "^12.0.2",
     "run-sequence": "^2.2.1",
+    "sinon": "^6.0.0",
+    "sinon-chai": "^3.2.0",
+    "sinon-stub-promise": "^4.0.0",
     "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.3"
+    "webpack-cli": "^2.1.3",
+    "xmlhttprequest": "^1.8.0"
   }
 }
