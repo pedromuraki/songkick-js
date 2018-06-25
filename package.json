@@ -1,13 +1,12 @@
 {
-  "name": "boilerplate",
+  "name": "songkick-wrapper",
   "version": "1.0.0",
-  "description": "a boilerplate for projects",
+  "description": "A wrapper library to work with the Songkick API.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill",
     "test:watch": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill --watch",
     "test:coverage": "nyc npm test",
-    "installpackages": "npm i --save-dev gulp browser-sync run-sequence gulp-rename gulp-sourcemaps gulp-sass gulp-autoprefixer gulp-concat-css gulp-group-css-media-queries gulp-clean-css gulp-concat gulp-uglify gulp-imagemin imagemin-pngquant babel-core babel-loader babel-preset-env babel-register babel-polyfill eslint webpack webpack-cli normalize.css",
     "lint": "./node_modules/.bin/eslint ./src/js/SongkickWrapper.js",
     "bundle": "./node_modules/.bin/webpack",
     "bundle:watch": "npm run bundle -- --watch"
@@ -23,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pedromuraki/boilerplate.git"
+    "url": "git+https://github.com/pedromuraki/songkick-wrapper.git"
   },
   "author": "Pedro Muraki <pedromuraki@gmail.com> (https://github.com/pedromuraki)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pedromuraki/boilerplate/issues"
+    "url": "https://github.com/pedromuraki/songkick-wrapper/issues"
   },
-  "homepage": "https://github.com/pedromuraki/boilerplate#readme",
+  "homepage": "https://github.com/pedromuraki/songkick-wrapper#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -44,24 +43,10 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^5.0.0",
-    "gulp-clean-css": "^3.9.4",
-    "gulp-concat": "^2.6.1",
-    "gulp-concat-css": "^3.1.0",
-    "gulp-group-css-media-queries": "^1.2.2",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.0",
-    "imagemin-pngquant": "^5.1.0",
     "mocha": "^5.2.0",
-    "normalize.css": "^8.0.0",
     "nyc": "^12.0.2",
-    "run-sequence": "^2.2.1",
     "sinon": "^6.0.0",
     "sinon-chai": "^3.2.0",
-    "sinon-stub-promise": "^4.0.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3",
     "xmlhttprequest": "^1.8.0"
