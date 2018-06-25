@@ -4,7 +4,7 @@ const errors = {
   invalid: 'Error: Invalid parameter(s). See library documentation.',
 }
 
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+// const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 class SongkickWrapper {
   constructor(key) {
