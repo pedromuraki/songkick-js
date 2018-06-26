@@ -4,8 +4,8 @@ const browsersync = require('browser-sync').create();
 /* browsersync */
 gulp.task('bs', function() {
   browsersync.init({
-    server: "./"
+    server: "./examples"
   });
   gulp.watch('*.html').on('change', browsersync.reload);
-  gulp.watch('src/js/bundle/bundle.js').on('change', browsersync.reload);
+  gulp.watch('examples/bundle/app.bundle.js').on('change', browsersync.reload);
 });

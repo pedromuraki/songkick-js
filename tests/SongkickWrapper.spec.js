@@ -2,7 +2,7 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import chaiAsPromised from 'chai-as-promised';
-import SongkickWrapper from '../src/js/SongkickWrapper.js';
+import SongkickWrapper from '../src/SongkickWrapper.js';
 
 chai.use(sinonChai);
 chai.use(chaiAsPromised);

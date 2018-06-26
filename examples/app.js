@@ -1,4 +1,4 @@
-import SongkickWrapper from './SongkickWrapper';
+import SongkickWrapper from '../src/SongkickWrapper';
 
 const songkick = new SongkickWrapper('KwvChI9jW9D3aYSd');
 

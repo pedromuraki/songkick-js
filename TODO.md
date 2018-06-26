@@ -1,3 +1,3 @@
-- verificar se precisa de babel polyfill e limpar package.json
-- minificar e otimizar para todos os formatos e usos
+- compilar biblioteca
+- publicar repositório e aplicar coveralls
 - documentar

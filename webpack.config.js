@@ -5,11 +5,11 @@ require('babel-polyfill');
 module.exports = {
   entry: [
     'babel-polyfill',
-    './src/js/app.js'
+    './examples/app.js'
   ],
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, './src/js/bundle')
+    filename: 'app.bundle.js',
+    path: path.resolve(__dirname, './examples/bundle')
   },
   module: {
     rules: [
