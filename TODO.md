@@ -1,3 +1,3 @@
-- compilar biblioteca
+- verificar se é necessário babel polyfill
 - publicar repositório e aplicar coveralls
-- documentar
+- documentar (readme)

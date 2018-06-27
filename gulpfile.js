@@ -7,5 +7,5 @@ gulp.task('bs', function() {
     server: "./examples"
   });
   gulp.watch('*.html').on('change', browsersync.reload);
-  gulp.watch('examples/bundle/app.bundle.js').on('change', browsersync.reload);
+  gulp.watch('./examples/bundle/app.bundle.js').on('change', browsersync.reload);
 });
