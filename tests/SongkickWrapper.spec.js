@@ -463,16 +463,16 @@ describe('SongkickWrapper', () => {
     });
 
     // GETTER METHODS
-    describe('Getter methods', () => {
-      describe('requestUrl', () => {
-        it('Should exist the getter method requestUrl', () => {
-          expect(songkick.requestUrl).to.exist;
-        });
-        it('Should return a string with the request url', () => {
-          songkick.getUpcomingEvents({ from: 'artists', id: '379603' });
-          expect(songkick.requestUrl).to.be.equal(`${API_URL}/artists/379603/calendar.json?apikey=${APIKEY}`);
-        });
-      });
-    });
+    // describe('Getter methods', () => {
+    //   describe('requestUrl', () => {
+    //     it('Should exist the getter method requestUrl', () => {
+    //       expect(songkick.requestUrl).to.exist;
+    //     });
+    //     it('Should return a string with the request url', () => {
+    //       songkick.getUpcomingEvents({ from: 'artists', id: '379603' });
+    //       expect(songkick.requestUrl).to.be.equal(`${API_URL}/artists/379603/calendar.json?apikey=${APIKEY}`);
+    //     });
+    //   });
+    // });
   });
 });
