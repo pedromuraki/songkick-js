@@ -1,5 +1,6 @@
 - verificar questão do xmlhttprequest
 - verificar maneira de ocultar o token api
-- publicar repositório / fazer deploy no travis e aplicar coveralls
 - verificar se é necessário babel polyfill
 - documentar (readme)
+- aplicar 100% de coverage e verificar melhorias nos testes
+- publicar no npm
