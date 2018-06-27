@@ -1,5 +1,5 @@
 const path = require('path');
-require('webpack');
+const webpack = require('webpack');
 // require('babel-polyfill');
 
 module.exports = {

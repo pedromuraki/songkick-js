@@ -1,3 +1,5 @@
+- verificar questão do xmlhttprequest
+- verificar maneira de ocultar o token api
+- publicar repositório / fazer deploy no travis e aplicar coveralls
 - verificar se é necessário babel polyfill
-- publicar repositório e aplicar coveralls
 - documentar (readme)

@@ -425,10 +425,10 @@ describe('SongkickWrapper', () => {
         it('Should exist the helper method _makeRequest', () => {
           expect(songkick).to.have.property('_makeRequest').that.is.a('function');
         });
-        it('Should return a resolved promise with a JSON object with prop status === ok', () => {
-          const promise = songkick._makeRequest(`${API_URL}/artists/379603/calendar.json?apikey=${APIKEY}`);
-          return expect(promise).to.be.a('promise').and.to.eventually.have.property('status', 'ok');
-        });
+        // it('Should return a resolved promise with a JSON object with prop status === ok', () => {
+        //   const promise = songkick._makeRequest(`${API_URL}/artists/379603/calendar.json?apikey=${APIKEY}`);
+        //   return expect(promise).to.be.a('promise').and.to.eventually.have.property('status', 'ok');
+        // });
       });
       describe('_paramsMarkup', () => {
         it('Should exist the helper method _paramsMarkup', () => {
