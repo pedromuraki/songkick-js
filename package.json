@@ -7,6 +7,7 @@
     "test": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill",
     "test:watch": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill --watch",
     "test:coverage": "nyc npm test",
+    "test:coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "lint": "./node_modules/.bin/eslint ./src/js/SongkickWrapper.js",
     "bundle": "./node_modules/.bin/webpack",
     "bundle:watch": "npm run bundle -- --watch"
@@ -39,6 +40,7 @@
     "browser-sync": "^2.24.4",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0",
