@@ -7,16 +7,20 @@
 
 ## Getting Started
 
-### Installation
+### Install
 
 Install with npm / Include the script located on the `dist` folder
+
+````
+$ npm install --save-dev songkick-wrapper
+````
 
 ### Initializing
 
 Create a new instance of the SongkickWrapper class passing your API key as parameter. You can request an API key [here](https://www.songkick.com/api_key_requests/new).
 
 ```js
-// import the lib
+// import the library (if installed via npm)
 import SongkickWrapper from 'SongkickWrapper';
 // or
 const SongkickWrapper = require('SongkickWrapper');
@@ -29,7 +33,7 @@ const songkick = new SongkickWrapper('your-api-key');
 
 All methods makes an AJAX request to the Songkick API and returns a promise with a JSON object containing the data received.
 
-Example using the `getUpcomingEvents` method:
+Example calling the `getUpcomingEvents` method:
 
 ```js
 songkick.getUpcomingEvents({
