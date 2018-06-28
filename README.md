@@ -185,3 +185,131 @@ songkick.getPastEvents({
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
 | per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
 | order          | Optional (inside optionalParams object) | Results are ordered by date: 'asc' or 'desc'. (Default = 'asc')                                        |
+
+---
+
+### getDetails
+This method returns details from an artist, an event or a venue.
+
+```js
+songkick.getDetails({
+  from: 'artists',
+  id: '379603', // id for Rolling Stones
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value |
+|----------------|:---------------------------------------:|-----------------------------------:|
+| from           | Yes                                     | "artists", "events" or "venues" |
+| id             | Yes                                     | The id related to the "from" parameter. |
+
+---
+
+### getUserTrackings
+This method returns the artists or metro_areas that an user is tracking.
+
+```js
+songkick.getUserTrackings({
+  username: 'username',
+  trackingObject: 'metro_areas',
+  optionalParams: {
+    page: 1,
+    per_page: 20,
+    fields: 'id,displayName',
+    created_after: '2018-02-28T13:37:00Z',
+  }
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value |
+|----------------|:---------------------------------------:|-----------------------------------:|
+| username       | Yes                                     | The user's username |
+| trackingObject | Yes                                     | "artists" or "metro_areas" |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow) |
+| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1) |
+| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50) |
+| fields         | Optional (inside optionalParams object) | The caller may specify a subset of fields to return in the response, in the form fields=key[,key]*. For example fields=id,displayName |
+| created_after | Optional (inside optionalParams object) | Specifies that only items created on or after a given time/date should be included in the response. Use ISO8601 format, e.g. 2018-02-28T13:37:00Z. Technical limitations mean that created_after can’t be supported for muted artists at present. |
+
+---
+
+### getUserMutedArtists
+This method returns the artists which the user once tracked but has subsequently untracked.
+
+```js
+songkick.getUserMutedArtists({
+  username: 'username',
+  optionalParams: {
+    page: 1,
+    per_page: 20,
+    fields: 'id,displayName',
+    created_after: '2018-02-28T13:37:00Z',
+  }
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value |
+|----------------|:---------------------------------------:|-----------------------------------:|
+| username       | Yes                                     | The user's username |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow) |
+| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1) |
+| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50) |
+| fields         | Optional (inside optionalParams object) | The caller may specify a subset of fields to return in the response, in the form fields=key[,key]*. For example fields=id,displayName |
+| created_after | Optional (inside optionalParams object) | Specifies that only items created on or after a given time/date should be included in the response. Use ISO8601 format, e.g. 2018-02-28T13:37:00Z. Technical limitations mean that created_after can’t be supported for muted artists at present. |
+
+---
+
+### isUserTracking
+This method check if the user is tracking a metro area, an artist or an event.
+If the user is tracking the metro area or artist, returns a tracking. Otherwise a 404 response is returned.
+If the user is attending or did attend the event, returns a tracking with its attendance (im_going|i_might_go). Otherwise a 404 response is returned.
+
+```js
+songkick.isUserTracking({
+  username: 'username',
+  trackingObject: 'artist',
+  id: '379603', // id for Rolling Stones
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value |
+|----------------|:---------------------------------------:|-----------------------------------:|
+| username       | Yes                                     | The user's username |
+| trackingObject | Yes                                     | "artist", "metro_area" or "event" |
+| id             | Yes                                     | The id related to the "trackingObject" parameter. |
+
+---
+
+### getSimilarArtists
+This methods returns a list of artists similar to a given artist, based on Songkick's tracking and attendance data.
+
+```js
+songkick.getSimilarArtists({
+  id: '379603', // id for Rolling Stones
+  optionalParams: {
+    page: 1,
+    per_page: 20,
+  }
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value |
+|----------------|:---------------------------------------:|-----------------------------------:|
+| id             | Yes                                     | The artist's id. |
+| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1) |
+| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50) |

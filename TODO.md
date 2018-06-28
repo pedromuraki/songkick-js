@@ -2,5 +2,6 @@
 - verificar maneira de ocultar o token api
 - verificar se é necessário babel polyfill
 - documentar (readme)
+  - conferir parametros
 - aplicar 100% de coverage e verificar melhorias nos testes
 - publicar no npm
