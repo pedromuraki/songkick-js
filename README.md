@@ -150,7 +150,7 @@ songkick.getUpcomingEvents({
 | per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
 | order          | Optional (inside optionalParams object) | Results are ordered by date: 'asc' or 'desc'. (Default = 'asc')                                        |
 
-
+---
 
 ### getPastEvents
 This method returns the past events from an artist or an user.
