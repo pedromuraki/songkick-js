@@ -14,6 +14,7 @@ Install with npm / Include the script located on the `dist` folder
 ````
 $ npm install --save-dev songkick-wrapper
 ````
+---
 
 ### Initializing
 
@@ -29,6 +30,7 @@ const SongkickWrapper = require('SongkickWrapper');
 // create an instance of SongkickWrapper with your API key
 const songkick = new SongkickWrapper('your-api-key');
 ```
+---
 
 ## How it works
 
@@ -116,6 +118,8 @@ Logs the response data:
   "totalEntries": 3
 }
 ```
+
+---
 
 ## Methods
 
