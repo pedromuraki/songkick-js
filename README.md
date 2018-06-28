@@ -140,14 +140,14 @@ songkick.getUpcomingEvents({
 ```
 #### Parameters
 
-| Parameter      |                 Required                |                                                                              Value                          |
-|----------------|:---------------------------------------:|------------------------------------------------------------------------------------------------------------:|
-| from           |                   Yes                   |                                      "artists", "venues", "metro_areas" or "users"                          |
-| id             |                   Yes                   |      The id related to the "from" parameter. (* for users, set the username as id / only one id is allowed) |
-| reason         |   Required if "from" value is "users"   |                                                   "tracked_artist" or "attendance"                          |
-| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see above)                          |
-| min_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                             |
-| max_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                             |
-| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                             |
-| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                      |
-| order          | Optional (inside optionalParams object) | Results are ordered by date: 'asc' or 'desc'. (Default = 'asc')                                             |
+| Parameter      | Required                                | Value                                                                                                  |
+|----------------|:---------------------------------------:|-------------------------------------------------------------------------------------------------------:|
+| from           | Yes                                     | "artists", "venues", "metro_areas" or "users"                                                          |
+| id             | Yes                                     | The id related to the "from" parameter. (* for users, set the username as id)                          |
+| reason         | Required if "from" value is "users"     | "tracked_artist" or "attendance"                                                                       |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| min_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
+| max_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
+| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
+| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
+| order          | Optional (inside optionalParams object) | Results are ordered by date: 'asc' or 'desc'. (Default = 'asc')                                        |
