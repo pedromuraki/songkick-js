@@ -120,7 +120,6 @@ Logs the response data:
 ## Methods
 
 ### getUpcomingEvents
-
 This method returns the upcoming events from an artist, a venue, a metro_area or an user.
 
 ```js
@@ -139,12 +138,44 @@ songkick.getUpcomingEvents({
 });
 ```
 #### Parameters
-
 | Parameter      | Required                                | Value                                                                                                  |
 |----------------|:---------------------------------------:|-------------------------------------------------------------------------------------------------------:|
 | from           | Yes                                     | "artists", "venues", "metro_areas" or "users"                                                          |
 | id             | Yes                                     | The id related to the "from" parameter. (* for users, set the username as id)                          |
 | reason         | Required if "from" value is "users"     | "tracked_artist" or "attendance"                                                                       |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| min_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
+| max_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
+| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
+| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
+| order          | Optional (inside optionalParams object) | Results are ordered by date: 'asc' or 'desc'. (Default = 'asc')                                        |
+
+
+
+### getPastEvents
+This method returns the past events from an artist or an user.
+
+```js
+songkick.getPastEvents({
+  from: 'artists',
+  id: '379603', // id for Rolling Stones
+  optionalParams: {
+    min_date: '2018/06/01',
+    max_date: '2018/12/31',
+    page: 1,
+    per_page: 20,
+    order: 'asc',
+  }
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value                                                                                                  |
+|----------------|:---------------------------------------:|-------------------------------------------------------------------------------------------------------:|
+| from           | Yes                                     | "artists" or "users"                                                          |
+| id             | Yes                                     | The id related to the "from" parameter. (* for users, set the username as id)                          |
 | optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
 | min_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
 | max_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
