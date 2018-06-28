@@ -14,7 +14,6 @@ Install with npm / Include the script located on the `dist` folder
 ````
 $ npm install --save-dev songkick-wrapper
 ````
----
 
 ### Initializing
 
