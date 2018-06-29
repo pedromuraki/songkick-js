@@ -313,3 +313,138 @@ songkick.getSimilarArtists({
 | id             | Yes                                     | The artist's id. |
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1) |
 | per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50) |
+
+---
+
+### searchEvents
+This methods returns a list of events based on the search parameters.
+
+```js
+songkick.searchEvents({
+  searchBy: {
+    artist_name: 'rolling+stones'
+  },
+  optionalParams: {
+    type: 'Concert',
+    page: 1,
+    per_page: 20,
+    min_date: '2018/06/01',
+    max_date: '2018/12/31',
+  }
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value |
+|----------------|:---------------------------------------:|-----------------------------------:|
+| searchBy | Yes | An object containing the search parameters. |
+| artist_name ** | Required if "location" not provided (inside "searchBy" object) | The artist's name (use "+" instead of spaces) |
+| location ** | Required if "artist_name" not provided (inside "searchBy" object) | "sk:<id>", "geo:<lat>,<lng>", "ip:<ip>" or "clientip" (see table below for details) |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| min_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
+| max_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
+| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
+| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
+| type           | Optional (inside optionalParams object) | "Concert" or "Festival" |
+
+_** only one parameter is allowed on the "searchBy" object ("artist_name" or "location")._
+
+The options below can be used in the "location" parameter to specify how the content returned should be localised:
+
+| Location Type | Description |
+|----------------|:---------------------------------------:|
+| sk:<id> | Localise based on a Songkick metro area ID. |
+| geo:<lat>,<lng> | Localise based on latitude / longitude. Use decimal degrees positive = north and east. |
+| ip:<ip> | Localise based on an IP address. Return all results if address is not present in the database. |
+| clientip | Localise based on IP address of client. Useful for purely client side implementations. |
+
+---
+
+### searchArtists
+This methods returns a list of artists based on the search query. This method searches by the artist's name.
+
+```js
+songkick.searchArtists({
+  query: 'rolling+stones',
+  optionalParams: {
+    page: 1,
+    per_page: 20,
+  }
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value |
+|----------------|:---------------------------------------:|-----------------------------------:|
+| query | Yes | The artist's name (use "+" instead of spaces) |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
+| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
+
+---
+
+### searchVenues
+This methods returns a list of venues based on the search query. This method searches by the venue's name.
+
+```js
+songkick.searchVenues({
+  query: 'madison+square+garden',
+  optionalParams: {
+    page: 1,
+    per_page: 20,
+  }
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value |
+|----------------|:---------------------------------------:|-----------------------------------:|
+| query | Yes | The venues's name (use "+" instead of spaces) |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
+| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
+
+---
+
+### searchLocations
+This methods returns a list of cities and its metro areas based on the search parameters.
+
+```js
+songkick.searchLocations({
+  searchBy: {
+    location: 'clientip'
+  },
+  optionalParams: {
+    page: 1,
+    per_page: 20,
+  }
+}).then(data => {
+  // do something with the response data
+});
+```
+
+#### Parameters
+| Parameter      | Required                                | Value |
+|----------------|:---------------------------------------:|-----------------------------------:|
+| searchBy | Yes | An object containing the search parameters. |
+| query ** | Required if "location" not provided (inside "searchBy" object) | The city or location's name (use "+" instead of spaces) |
+| location ** | Required if "artist_name" not provided (inside "searchBy" object) | "geo:<lat>,<lng>", "ip:<ip>" or "clientip" (see table below for details) |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
+| per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
+
+_** only one parameter is allowed on the "searchBy" object ("query" or "location")._
+
+The options below can be used in the "location" parameter to specify how the content returned should be localised:
+
+| Location Type | Description |
+|----------------|:---------------------------------------:|
+| geo:<lat>,<lng> | Localise based on latitude / longitude. Use decimal degrees positive = north and east. |
+| ip:<ip> | Localise based on an IP address. Return all results if address is not present in the database. |
+| clientip | Localise based on IP address of client. Useful for purely client side implementations. |

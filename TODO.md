@@ -1,7 +1,10 @@
 - verificar questão do xmlhttprequest
 - verificar maneira de ocultar o token api
 - verificar se é necessário babel polyfill
-- documentar (readme)
-  - conferir parametros
+- documentação
+  - conferir parametros e revisar
+  - adicionar browser support
+  - adicionar lista de metodos com ancoras
+  - adicionar link pro Songkick developer
 - aplicar 100% de coverage e verificar melhorias nos testes
 - publicar no npm
