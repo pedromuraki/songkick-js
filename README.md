@@ -1,7 +1,7 @@
 # Songkick JS
 
-[![Build Status](https://travis-ci.org/pedromuraki/songkick-wrapper.svg?branch=master)](https://travis-ci.org/pedromuraki/songkick-wrapper)
-[![Coverage Status](https://coveralls.io/repos/github/pedromuraki/songkick-wrapper/badge.svg?branch=master)](https://coveralls.io/github/pedromuraki/songkick-wrapper?branch=master)
+[![Build Status](https://travis-ci.org/pedromuraki/songkick-js.svg?branch=master)](https://travis-ci.org/pedromuraki/songkick-js)
+[![Coverage Status](https://coveralls.io/repos/github/pedromuraki/songkick-js/badge.svg?branch=master)](https://coveralls.io/github/pedromuraki/songkick-js?branch=master)
 
 > A javascript wrapper library to work with the [Songkick](https://www.songkick.com/) API.
 
