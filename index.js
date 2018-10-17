@@ -1,1 +1,1 @@
-module.exports = require('./src/SongkickWrapper').default;
+module.exports = require('./src/SongkickJS').default;

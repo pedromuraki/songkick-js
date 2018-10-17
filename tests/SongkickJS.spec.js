@@ -2,24 +2,24 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import chaiAsPromised from 'chai-as-promised';
-import SongkickWrapper from '../src/SongkickWrapper.js';
+import SongkickJS from '../src/SongkickJS.js';
 
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
 
 const API_URL = 'http://api.songkick.com/api/3.0';
 const APIKEY = 'KwvChI9jW9D3aYSd';
-const songkick = new SongkickWrapper(APIKEY);
+const songkick = new SongkickJS(APIKEY);
 
-describe('SongkickWrapper', () => {
-  it('Should exist the class SongkickWrapper', () => {
-    expect(SongkickWrapper).to.exist;
-    expect(songkick).to.be.an.instanceof(SongkickWrapper);
+describe('SongkickJS', () => {
+  it('Should exist the class SongkickJS', () => {
+    expect(SongkickJS).to.exist;
+    expect(songkick).to.be.an.instanceof(SongkickJS);
   });
 
   // PROPERTIES
   describe('Properties', () => {
-    it('Should define a property _APIKEY when the SongkickWrapper class is instantiated', () => {
+    it('Should define a property _APIKEY when the SongkickJS class is instantiated', () => {
       expect(songkick).to.have.property('_APIKEY', 'KwvChI9jW9D3aYSd');
     });
   });

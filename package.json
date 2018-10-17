@@ -1,5 +1,5 @@
 {
-  "name": "songkick-wrapper",
+  "name": "songkick-js",
   "version": "1.0.0",
   "description": "A wrapper library to work with the Songkick API.",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "test:watch": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill --watch",
     "test:coverage": "nyc npm test",
     "test:coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "lint": "./node_modules/.bin/eslint ./src/js/SongkickWrapper.js",
+    "lint": "./node_modules/.bin/eslint ./src/js/SongkickJS.js",
     "bundle": "./node_modules/.bin/webpack",
     "bundle:watch": "npm run bundle -- --watch"
   },
@@ -23,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pedromuraki/songkick-wrapper.git"
+    "url": "git+https://github.com/pedromuraki/songkick-js.git"
   },
   "author": "Pedro Muraki <pedromuraki@gmail.com> (https://github.com/pedromuraki)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pedromuraki/songkick-wrapper/issues"
+    "url": "https://github.com/pedromuraki/songkick-js/issues"
   },
-  "homepage": "https://github.com/pedromuraki/songkick-wrapper#readme",
+  "homepage": "https://github.com/pedromuraki/songkick-js#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",

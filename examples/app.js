@@ -1,6 +1,6 @@
-import SongkickWrapper from '../dist/SongkickWrapper.min.js';
+import SongkickJS from '../dist/SongkickJS.min.js';
 
-const songkick = new SongkickWrapper('KwvChI9jW9D3aYSd');
+const songkick = new SongkickJS('KwvChI9jW9D3aYSd');
 
 songkick.getUserTrackings({
   username: 'pedromuraki',

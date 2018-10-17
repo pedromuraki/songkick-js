@@ -1,12 +1,12 @@
 const API_URL = 'http://api.songkick.com/api/3.0';
 const errors = {
   required: 'Error: Required parameter(s) missing. See library documentation.',
-  invalid: 'Error: Invalid parameter(s). See library documentation.',
-}
+  invalid: 'Error: Invalid parameter(s). See library documentation.'
+};
 
 // const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-class SongkickWrapper {
+class SongkickJS {
   constructor(key) {
     this._APIKEY = key;
     /*
@@ -35,14 +35,23 @@ class SongkickWrapper {
     }
     */
     this._checkRequiredParams([options.from, options.id]);
-    this._checkParamValue(options.from, ['artists', 'venues', 'metro_areas', 'users']);
+    this._checkParamValue(options.from, [
+      'artists',
+      'venues',
+      'metro_areas',
+      'users'
+    ]);
     if (options.from === 'users') {
       this._checkRequiredParams([options.reason]);
       this._checkParamValue(options.reason, ['tracked_artist', 'attendance']);
     }
 
     const reason = options.reason ? `reason=${options.reason}&` : '';
-    return this._makeRequest(`${API_URL}/${options.from}/${options.id}/calendar.json?${reason}apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
+    return this._makeRequest(
+      `${API_URL}/${options.from}/${options.id}/calendar.json?${reason}apikey=${
+        this._APIKEY
+      }${this._paramsMarkup(options.optionalParams)}`
+    );
   }
   // PAST EVENTS
   getPastEvents(options) {
@@ -64,7 +73,11 @@ class SongkickWrapper {
     this._checkRequiredParams([options.from, options.id]);
     this._checkParamValue(options.from, ['artists', 'users']);
 
-    return this._makeRequest(`${API_URL}/${options.from}/${options.id}/gigography.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
+    return this._makeRequest(
+      `${API_URL}/${options.from}/${options.id}/gigography.json?apikey=${
+        this._APIKEY
+      }${this._paramsMarkup(options.optionalParams)}`
+    );
   }
 
   // DETAILS (FROM ARTISTS, EVENTS OR VENUES)
@@ -79,7 +92,9 @@ class SongkickWrapper {
     this._checkRequiredParams([options.from, options.id]);
     this._checkParamValue(options.from, ['artists', 'venues', 'events']);
 
-    return this._makeRequest(`${API_URL}/${options.from}/${options.id}.json?apikey=${this._APIKEY}`);
+    return this._makeRequest(
+      `${API_URL}/${options.from}/${options.id}.json?apikey=${this._APIKEY}`
+    );
   }
 
   // USER TRACKINGS (OF METROS AREAS OR ARTISTS)
@@ -100,7 +115,13 @@ class SongkickWrapper {
     this._checkRequiredParams([options.username, options.trackingObject]);
     this._checkParamValue(options.trackingObject, ['metro_areas', 'artists']);
 
-    return this._makeRequest(`${API_URL}/users/${options.username}/${options.trackingObject}/tracked.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
+    return this._makeRequest(
+      `${API_URL}/users/${options.username}/${
+        options.trackingObject
+      }/tracked.json?apikey=${this._APIKEY}${this._paramsMarkup(
+        options.optionalParams
+      )}`
+    );
   }
   // USER MUTED ARTISTS
   getUserMutedArtists(options) {
@@ -117,7 +138,11 @@ class SongkickWrapper {
     */
     this._checkRequiredParams([options.username]);
 
-    return this._makeRequest(`${API_URL}/users/${options.username}/artists/muted.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
+    return this._makeRequest(
+      `${API_URL}/users/${options.username}/artists/muted.json?apikey=${
+        this._APIKEY
+      }${this._paramsMarkup(options.optionalParams)}`
+    );
   }
   // IS USER TRACKING
   isUserTracking(options) {
@@ -129,10 +154,22 @@ class SongkickWrapper {
       id *
     }
     */
-    this._checkRequiredParams([options.username, options.trackingObject, options.id]);
-    this._checkParamValue(options.trackingObject, ['metro_area', 'artist', 'event']);
+    this._checkRequiredParams([
+      options.username,
+      options.trackingObject,
+      options.id
+    ]);
+    this._checkParamValue(options.trackingObject, [
+      'metro_area',
+      'artist',
+      'event'
+    ]);
 
-    return this._makeRequest(`${API_URL}/users/${options.username}/trackings/${options.trackingObject}:${options.id}.json?apikey=${this._APIKEY}`);
+    return this._makeRequest(
+      `${API_URL}/users/${options.username}/trackings/${
+        options.trackingObject
+      }:${options.id}.json?apikey=${this._APIKEY}`
+    );
   }
 
   // SIMILAR ARTISTS
@@ -148,7 +185,11 @@ class SongkickWrapper {
     */
     this._checkRequiredParams([options.id]);
 
-    return this._makeRequest(`${API_URL}/artists/${options.id}/similar_artists.json?apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
+    return this._makeRequest(
+      `${API_URL}/artists/${options.id}/similar_artists.json?apikey=${
+        this._APIKEY
+      }${this._paramsMarkup(options.optionalParams)}`
+    );
   }
 
   // SEARCH EVENTS
@@ -173,10 +214,18 @@ class SongkickWrapper {
       }
     }
     */
-    if (!options.searchBy || (!options.searchBy.artist_name && !options.searchBy.location)) console.log(errors.required);
+    if (
+      !options.searchBy ||
+      (!options.searchBy.artist_name && !options.searchBy.location)
+    )
+      console.log(errors.required);
     if (Object.keys(options.searchBy).length > 3) console.log(errors.invalid);
 
-    return this._makeRequest(`${API_URL}/events.json?apikey=${this._APIKEY}${this._paramsMarkup(options.searchBy)}${this._paramsMarkup(options.optionalParams)}`);
+    return this._makeRequest(
+      `${API_URL}/events.json?apikey=${this._APIKEY}${this._paramsMarkup(
+        options.searchBy
+      )}${this._paramsMarkup(options.optionalParams)}`
+    );
   }
   // SEARCH ARTISTS
   searchArtists(options) {
@@ -192,7 +241,11 @@ class SongkickWrapper {
     */
     this._checkRequiredParams([options.query]);
 
-    return this._makeRequest(`${API_URL}/search/artists.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`);
+    return this._makeRequest(
+      `${API_URL}/search/artists.json?apikey=${this._APIKEY}&query=${
+        options.query
+      }${this._paramsMarkup(options.optionalParams)}`
+    );
   }
   // SEARCH VENUES
   searchVenues(options) {
@@ -208,7 +261,11 @@ class SongkickWrapper {
     */
     this._checkRequiredParams([options.query]);
 
-    return this._makeRequest(`${API_URL}/search/venues.json?apikey=${this._APIKEY}&query=${options.query}${this._paramsMarkup(options.optionalParams)}`);
+    return this._makeRequest(
+      `${API_URL}/search/venues.json?apikey=${this._APIKEY}&query=${
+        options.query
+      }${this._paramsMarkup(options.optionalParams)}`
+    );
   }
   // SEARCH LOCATIONS
   searchLocations(options) {
@@ -226,19 +283,30 @@ class SongkickWrapper {
       }
     }
     */
-    if (!options.searchBy || (!options.searchBy.query && !options.searchBy.location)) console.log(errors.required);
+    if (
+      !options.searchBy ||
+      (!options.searchBy.query && !options.searchBy.location)
+    )
+      console.log(errors.required);
     if (Object.keys(options.searchBy).length > 1) console.log(errors.invalid);
 
-    const searchBy = options.searchBy.query ? `query=${options.searchBy.query}` : `location=${options.searchBy.location}`;
-    return this._makeRequest(`${API_URL}/search/locations.json?${searchBy}&apikey=${this._APIKEY}${this._paramsMarkup(options.optionalParams)}`);
+    const searchBy = options.searchBy.query
+      ? `query=${options.searchBy.query}`
+      : `location=${options.searchBy.location}`;
+    return this._makeRequest(
+      `${API_URL}/search/locations.json?${searchBy}&apikey=${
+        this._APIKEY
+      }${this._paramsMarkup(options.optionalParams)}`
+    );
   }
-
 
   // HELPERS
   _paramsMarkup(params) {
     let paramsMarkup = '';
     if (params)
-      Object.entries(params).forEach(([key, value]) => paramsMarkup += `&${key}=${value}`);
+      Object.entries(params).forEach(
+        ([key, value]) => (paramsMarkup += `&${key}=${value}`)
+      );
     return paramsMarkup;
   }
 
@@ -250,25 +318,29 @@ class SongkickWrapper {
       req.open('GET', url);
 
       req.onload = () =>
-        req.status === 200 ? resolve(JSON.parse(req.responseText).resultsPage) : '';
+        req.status === 200
+          ? resolve(JSON.parse(req.responseText).resultsPage)
+          : '';
 
       req.send();
     });
   }
 
   _checkRequiredParams(params) {
-    params.forEach((param) => {
+    params.forEach(param => {
       if (!param) console.log(errors.required);
     });
   }
 
   _checkParamValue(paramValue, acceptedValues) {
-    const isValid = acceptedValues.some((acceptedValue) => {
+    const isValid = acceptedValues.some(acceptedValue => {
       return paramValue === acceptedValue;
     });
-    if (!isValid) console.log(`Error: "${paramValue}" is not a valid value. See library documentation.`);
+    if (!isValid)
+      console.log(
+        `Error: "${paramValue}" is not a valid value. See library documentation.`
+      );
   }
-
 
   // GETTERS
   get requestUrl() {
@@ -276,4 +348,4 @@ class SongkickWrapper {
   }
 }
 
-export default SongkickWrapper;
+export default SongkickJS;
