@@ -1,6 +1,6 @@
 {
   "name": "songkick-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A wrapper library to work with the Songkick API.",
   "main": "./dist/SongkickJS.min.js",
   "scripts": {
