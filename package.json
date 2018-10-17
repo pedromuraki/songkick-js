@@ -1,8 +1,8 @@
 {
   "name": "songkick-js",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A wrapper library to work with the Songkick API.",
-  "main": "index.js",
+  "main": "./dist/SongkickJS.min.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill",
     "test:watch": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill --watch",
@@ -12,6 +12,9 @@
     "bundle": "./node_modules/.bin/webpack",
     "bundle:watch": "npm run bundle -- --watch"
   },
+  "files": [
+    "dist"
+  ],
   "nyc": {
     "reporter": [
       "text",
