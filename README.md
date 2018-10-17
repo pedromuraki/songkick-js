@@ -9,7 +9,7 @@
 
 ### Install
 
-Install with npm or Include the script located on the `dist` folder
+Install with npm or include the script located on the `dist` folder
 
 ```
 $ npm install --save-dev songkick-js

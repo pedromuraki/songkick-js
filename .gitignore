@@ -1,3 +1,7 @@
+.coveralls.yml
+_examples/
+_TODO.md
+
 # Logs
 logs
 *.log
