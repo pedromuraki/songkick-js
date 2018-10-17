@@ -6,5 +6,6 @@
   - adicionar browser support
   - adicionar lista de metodos com ancoras
   - adicionar link pro Songkick developer
+  - avisar que o ID pode ser pego nos metodos de busca
 - aplicar 100% de coverage e verificar melhorias nos testes
 - publicar no npm

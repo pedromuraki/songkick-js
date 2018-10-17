@@ -9,7 +9,7 @@
 
 ### Install
 
-Install with npm / Include the script located on the `dist` folder
+Install with npm or Include the script located on the `dist` folder
 
 ````
 $ npm install --save-dev songkick-wrapper
@@ -123,7 +123,7 @@ Logs the response data:
 ## Methods
 
 ### getUpcomingEvents
-This method returns the upcoming events from an artist, a venue, a metro_area or an user.
+This method returns the upcoming events from an artist, a venue, a metro area or an user.
 
 ```js
 songkick.getUpcomingEvents({
@@ -146,7 +146,7 @@ songkick.getUpcomingEvents({
 | from           | Yes                                     | "artists", "venues", "metro_areas" or "users"                                                          |
 | id             | Yes                                     | The id related to the "from" parameter. (* for users, set the username as id)                          |
 | reason         | Required if "from" value is "users"     | "tracked_artist" or "attendance"                                                                       |
-| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see below)                    |
 | min_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
 | max_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
@@ -179,7 +179,7 @@ songkick.getPastEvents({
 |----------------|:---------------------------------------:|-------------------------------------------------------------------------------------------------------:|
 | from           | Yes                                     | "artists" or "users"                                                          |
 | id             | Yes                                     | The id related to the "from" parameter. (* for users, set the username as id)                          |
-| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see below)                    |
 | min_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
 | max_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
@@ -231,7 +231,7 @@ songkick.getUserTrackings({
 |----------------|:---------------------------------------:|-----------------------------------:|
 | username       | Yes                                     | The user's username |
 | trackingObject | Yes                                     | "artists" or "metro_areas" |
-| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow) |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see below) |
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1) |
 | per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50) |
 | fields         | Optional (inside optionalParams object) | The caller may specify a subset of fields to return in the response, in the form fields=key[,key]*. For example fields=id,displayName |
@@ -260,7 +260,7 @@ songkick.getUserMutedArtists({
 | Parameter      | Required                                | Value |
 |----------------|:---------------------------------------:|-----------------------------------:|
 | username       | Yes                                     | The user's username |
-| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow) |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see below) |
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1) |
 | per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50) |
 | fields         | Optional (inside optionalParams object) | The caller may specify a subset of fields to return in the response, in the form fields=key[,key]*. For example fields=id,displayName |
@@ -342,7 +342,7 @@ songkick.searchEvents({
 | searchBy | Yes | An object containing the search parameters. |
 | artist_name ** | Required if "location" not provided (inside "searchBy" object) | The artist's name (use "+" instead of spaces) |
 | location ** | Required if "artist_name" not provided (inside "searchBy" object) | "sk:id", "geo:lat,lng", "ip:ip" or "clientip" (see table below for details) |
-| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see below)                    |
 | min_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
 | max_date       | Optional (inside optionalParams object) | A date in the format YYYY-MM-DD                                                                        |
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
@@ -381,7 +381,7 @@ songkick.searchArtists({
 | Parameter      | Required                                | Value |
 |----------------|:---------------------------------------:|-----------------------------------:|
 | query | Yes | The artist's name (use "+" instead of spaces) |
-| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see below)                    |
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
 | per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
 
@@ -406,7 +406,7 @@ songkick.searchVenues({
 | Parameter      | Required                                | Value |
 |----------------|:---------------------------------------:|-----------------------------------:|
 | query | Yes | The venues's name (use "+" instead of spaces) |
-| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see below)                    |
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
 | per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
 
@@ -435,7 +435,7 @@ songkick.searchLocations({
 | searchBy | Yes | An object containing the search parameters. |
 | query ** | Required if "location" not provided (inside "searchBy" object) | The city or location's name (use "+" instead of spaces) |
 | location ** | Required if "artist_name" not provided (inside "searchBy" object) | "geo:lat,lng", "ip:ip" or "clientip" (see table below for details) |
-| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see bellow)                    |
+| optionalParams | Optional                                | An object containing the optional parameters and its respective values (see below)                    |
 | page           | Optional (inside optionalParams object) | Results are paginated. This specifies the results page number. (First page = 1)                        |
 | per_page       | Optional (inside optionalParams object) | The number of results to return in each page. (Max 50)                                                 |
 
