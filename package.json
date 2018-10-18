@@ -1,6 +1,6 @@
 {
   "name": "songkick-js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A wrapper library to work with the Songkick API.",
   "main": "./dist/SongkickJS.min.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "bundle:watch": "npm run bundle -- --watch"
   },
   "files": [
-    "dist"
+    "dist/SongkickJS.min.js"
   ],
   "nyc": {
     "reporter": [

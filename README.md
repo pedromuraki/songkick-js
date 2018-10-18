@@ -22,11 +22,11 @@ Create a new instance of the SongkickJS class passing your API key as parameter.
 ```js
 // if installed via npm
 // import the library as es6 module
-import SongkickJS from 'SongkickJS';
+import SongkickJS from 'songkick-js';
 // or common js
-const SongkickJS = require('SongkickJS');
+const SongkickJS = require('songkick-js');
 
-// then create an instance of SongkickJS with your API key
+// create an instance of SongkickJS with your API key
 const songkick = new SongkickJS('your-api-key');
 ```
 

@@ -1,6 +1,6 @@
 .coveralls.yml
-_examples/
-_TODO.md
+examples/
+TODO.md
 
 # Logs
 logs
