@@ -26,8 +26,8 @@ import SongkickJS from 'songkick-js';
 // or common js
 const SongkickJS = require('songkick-js');
 
-// create an instance of SongkickJS with your API key
-const songkick = new SongkickJS('your-api-key');
+// create an instance of SongkickJS with your API key and true/false indicating if the API should be requested via https
+const songkick = new SongkickJS('your-api-key', true);
 ```
 
 ---
