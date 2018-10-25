@@ -17,7 +17,7 @@ $ npm install --save-dev songkick-js
 
 ### Initializing
 
-Create a new instance of the SongkickJS class passing your API key as parameter. You can request an API key [here](https://www.songkick.com/api_key_requests/new).
+Create a new instance of the SongkickJS class passing as parameters a _string_ with your **API key**, and a _boolean_ indicating if the API should be requested via **https**. You can request an API key [here](https://www.songkick.com/api_key_requests/new).
 
 ```js
 // if installed via npm
@@ -26,7 +26,7 @@ import SongkickJS from 'songkick-js';
 // or common js
 const SongkickJS = require('songkick-js');
 
-// create an instance of SongkickJS with your API key and true/false indicating if the API should be requested via https
+// create an instance of SongkickJS
 const songkick = new SongkickJS('your-api-key', true);
 ```
 
