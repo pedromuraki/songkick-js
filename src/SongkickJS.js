@@ -1,4 +1,3 @@
-const API_URL = 'http://api.songkick.com/api/3.0';
 const errors = {
   required: 'Error: Required parameter(s) missing. See library documentation.',
   invalid: 'Error: Invalid parameter(s). See library documentation.'
@@ -7,10 +6,12 @@ const errors = {
 // const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 class SongkickJS {
-  constructor(key) {
-    this._APIKEY = key;
+  constructor(key, isHttps) {
+    this._API_KEY = key;
+    this._isHttps = isHttps;
     /*
-    this._APIKEY *
+    this._API_KEY *
+    this._isHttps
     this._requestUrl (defined after a request)
     */
   }
@@ -48,9 +49,11 @@ class SongkickJS {
 
     const reason = options.reason ? `reason=${options.reason}&` : '';
     return this._makeRequest(
-      `${API_URL}/${options.from}/${options.id}/calendar.json?${reason}apikey=${
-        this._APIKEY
-      }${this._paramsMarkup(options.optionalParams)}`
+      `${this._apiUrl()}/${options.from}/${
+        options.id
+      }/calendar.json?${reason}apikey=${this._API_KEY}${this._paramsMarkup(
+        options.optionalParams
+      )}`
     );
   }
   // PAST EVENTS
@@ -74,8 +77,8 @@ class SongkickJS {
     this._checkParamValue(options.from, ['artists', 'users']);
 
     return this._makeRequest(
-      `${API_URL}/${options.from}/${options.id}/gigography.json?apikey=${
-        this._APIKEY
+      `${this._apiUrl()}/${options.from}/${options.id}/gigography.json?apikey=${
+        this._API_KEY
       }${this._paramsMarkup(options.optionalParams)}`
     );
   }
@@ -93,7 +96,9 @@ class SongkickJS {
     this._checkParamValue(options.from, ['artists', 'venues', 'events']);
 
     return this._makeRequest(
-      `${API_URL}/${options.from}/${options.id}.json?apikey=${this._APIKEY}`
+      `${this._apiUrl()}/${options.from}/${options.id}.json?apikey=${
+        this._API_KEY
+      }`
     );
   }
 
@@ -116,9 +121,9 @@ class SongkickJS {
     this._checkParamValue(options.trackingObject, ['metro_areas', 'artists']);
 
     return this._makeRequest(
-      `${API_URL}/users/${options.username}/${
+      `${this._apiUrl()}/users/${options.username}/${
         options.trackingObject
-      }/tracked.json?apikey=${this._APIKEY}${this._paramsMarkup(
+      }/tracked.json?apikey=${this._API_KEY}${this._paramsMarkup(
         options.optionalParams
       )}`
     );
@@ -139,8 +144,8 @@ class SongkickJS {
     this._checkRequiredParams([options.username]);
 
     return this._makeRequest(
-      `${API_URL}/users/${options.username}/artists/muted.json?apikey=${
-        this._APIKEY
+      `${this._apiUrl()}/users/${options.username}/artists/muted.json?apikey=${
+        this._API_KEY
       }${this._paramsMarkup(options.optionalParams)}`
     );
   }
@@ -166,9 +171,9 @@ class SongkickJS {
     ]);
 
     return this._makeRequest(
-      `${API_URL}/users/${options.username}/trackings/${
+      `${this._apiUrl()}/users/${options.username}/trackings/${
         options.trackingObject
-      }:${options.id}.json?apikey=${this._APIKEY}`
+      }:${options.id}.json?apikey=${this._API_KEY}`
     );
   }
 
@@ -186,8 +191,8 @@ class SongkickJS {
     this._checkRequiredParams([options.id]);
 
     return this._makeRequest(
-      `${API_URL}/artists/${options.id}/similar_artists.json?apikey=${
-        this._APIKEY
+      `${this._apiUrl()}/artists/${options.id}/similar_artists.json?apikey=${
+        this._API_KEY
       }${this._paramsMarkup(options.optionalParams)}`
     );
   }
@@ -222,9 +227,11 @@ class SongkickJS {
     if (Object.keys(options.searchBy).length > 3) console.log(errors.invalid);
 
     return this._makeRequest(
-      `${API_URL}/events.json?apikey=${this._APIKEY}${this._paramsMarkup(
-        options.searchBy
-      )}${this._paramsMarkup(options.optionalParams)}`
+      `${this._apiUrl()}/events.json?apikey=${
+        this._API_KEY
+      }${this._paramsMarkup(options.searchBy)}${this._paramsMarkup(
+        options.optionalParams
+      )}`
     );
   }
   // SEARCH ARTISTS
@@ -242,7 +249,7 @@ class SongkickJS {
     this._checkRequiredParams([options.query]);
 
     return this._makeRequest(
-      `${API_URL}/search/artists.json?apikey=${this._APIKEY}&query=${
+      `${this._apiUrl()}/search/artists.json?apikey=${this._API_KEY}&query=${
         options.query
       }${this._paramsMarkup(options.optionalParams)}`
     );
@@ -262,7 +269,7 @@ class SongkickJS {
     this._checkRequiredParams([options.query]);
 
     return this._makeRequest(
-      `${API_URL}/search/venues.json?apikey=${this._APIKEY}&query=${
+      `${this._apiUrl()}/search/venues.json?apikey=${this._API_KEY}&query=${
         options.query
       }${this._paramsMarkup(options.optionalParams)}`
     );
@@ -294,13 +301,17 @@ class SongkickJS {
       ? `query=${options.searchBy.query}`
       : `location=${options.searchBy.location}`;
     return this._makeRequest(
-      `${API_URL}/search/locations.json?${searchBy}&apikey=${
-        this._APIKEY
+      `${this._apiUrl()}/search/locations.json?${searchBy}&apikey=${
+        this._API_KEY
       }${this._paramsMarkup(options.optionalParams)}`
     );
   }
 
   // HELPERS
+  _apiUrl() {
+    return `${this._isHttps ? 'https' : 'http'}://api.songkick.com/api/3.0`;
+  }
+
   _paramsMarkup(params) {
     let paramsMarkup = '';
     if (params)
