@@ -479,14 +479,14 @@ songkick
 
 #### Parameters
 
-| Parameter      |                             Required                              |                                                                              Value |
-| -------------- | :---------------------------------------------------------------: | ---------------------------------------------------------------------------------: |
-| searchBy       |                                Yes                                |                                        An object containing the search parameters. |
-| query \*\*     |  Required if "location" not provided (inside "searchBy" object)   |                            The city or location's name (use "+" instead of spaces) |
-| location \*\*  | Required if "artist_name" not provided (inside "searchBy" object) |                 "geo:lat,lng", "ip:ip" or "clientip" (see table below for details) |
-| optionalParams |                             Optional                              | An object containing the optional parameters and its respective values (see below) |
-| page           |              Optional (inside optionalParams object)              |    Results are paginated. This specifies the results page number. (First page = 1) |
-| per_page       |              Optional (inside optionalParams object)              |                             The number of results to return in each page. (Max 50) |
+| Parameter      |                            Required                            |                                                                              Value |
+| -------------- | :------------------------------------------------------------: | ---------------------------------------------------------------------------------: |
+| searchBy       |                              Yes                               |                                        An object containing the search parameters. |
+| query \*\*     | Required if "location" not provided (inside "searchBy" object) |                            The city or location's name (use "+" instead of spaces) |
+| location \*\*  |  Required if "query" not provided (inside "searchBy" object)   |                 "geo:lat,lng", "ip:ip" or "clientip" (see table below for details) |
+| optionalParams |                            Optional                            | An object containing the optional parameters and its respective values (see below) |
+| page           |            Optional (inside optionalParams object)             |    Results are paginated. This specifies the results page number. (First page = 1) |
+| per_page       |            Optional (inside optionalParams object)             |                             The number of results to return in each page. (Max 50) |
 
 _\*\* only one parameter is allowed on the "searchBy" object ("query" or "location")._
 
