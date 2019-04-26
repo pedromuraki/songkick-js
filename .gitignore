@@ -65,4 +65,4 @@ typings/
 .next
 
 # eslint configuration file
-.eslintrc.js
+# .eslintrc.js

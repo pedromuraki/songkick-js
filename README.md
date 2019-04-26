@@ -3,16 +3,16 @@
 [![Build Status](https://travis-ci.org/pedromuraki/songkick-js.svg?branch=master)](https://travis-ci.org/pedromuraki/songkick-js)
 [![Coverage Status](https://coveralls.io/repos/github/pedromuraki/songkick-js/badge.svg?branch=master)](https://coveralls.io/github/pedromuraki/songkick-js?branch=master)
 
-> A javascript wrapper library to work with the [Songkick](https://www.songkick.com/) API.
+A javascript wrapper library to work with the [Songkick](https://www.songkick.com/) API.
 
 ## Getting Started
 
 ### Install
 
-Install with npm or include the script located on the `dist` folder
+Install with npm or include the script located on the `dist` folder (SongkickJS.min.js)
 
 ```
-$ npm install --save-dev songkick-js
+$ npm i --save-dev songkick-js
 ```
 
 ### Initializing
@@ -34,7 +34,7 @@ const songkick = new SongkickJS('your-api-key', true);
 
 ## How it works
 
-All methods makes an AJAX request to the Songkick API and returns a promise with a JSON object containing the data received.
+All methods makes an AJAX request to the Songkick API and returns a promise with a JSON object containing the response data.
 
 Example calling the `getUpcomingEvents` method:
 
