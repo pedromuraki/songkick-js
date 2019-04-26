@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   entry: ['./index.js'],
@@ -12,4 +12,4 @@ module.exports = {
     rules: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }]
   },
   devtool: 'source-map'
-};
+}

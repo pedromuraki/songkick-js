@@ -4,8 +4,8 @@
   "description": "A wrapper library to work with the Songkick API.",
   "main": "./dist/SongkickJS.min.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill",
-    "test:watch": "./node_modules/mocha/bin/mocha tests/* --require babel-register --require babel-polyfill --watch",
+    "test": "./node_modules/mocha/bin/mocha tests/* --require babel-register",
+    "test:watch": "./node_modules/mocha/bin/mocha tests/* --require babel-register --watch",
     "test:coverage": "nyc npm test",
     "test:coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "bundle": "./node_modules/.bin/webpack",
