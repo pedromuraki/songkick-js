@@ -8,7 +8,7 @@ chai.use(sinonChai)
 chai.use(chaiAsPromised)
 
 const API_URL = 'http://api.songkick.com/api/3.0'
-const API_KEY = 'KwvChI9jW9D3aYSd'
+const API_KEY = '12345'
 const songkick = new SongkickJS(API_KEY)
 
 describe('SongkickJS', () => {
@@ -20,7 +20,7 @@ describe('SongkickJS', () => {
   // PROPERTIES
   describe('Properties', () => {
     it('Should define a property _API_KEY when the SongkickJS class is instantiated', () => {
-      expect(songkick).to.have.property('_API_KEY', 'KwvChI9jW9D3aYSd')
+      expect(songkick).to.have.property('_API_KEY', '12345')
     })
   })
 
@@ -463,10 +463,10 @@ describe('SongkickJS', () => {
             .to.have.property('_makeRequest')
             .that.is.a('function')
         })
-        // it('Should return a resolved promise with a JSON object with prop status === ok', () => {
-        //   const promise = songkick._makeRequest(`${API_URL}/artists/379603/calendar.json?apikey=${API_KEY}`);
-        //   return expect(promise).to.be.a('promise').and.to.eventually.have.property('status', 'ok');
-        // });
+        // it('Should return a promise', () => {
+        //   const result = songkick._makeRequest(`${API_URL}/artists/379603/calendar.json?apikey=${API_KEY}`)
+        //   expect(result).to.be.a('promise')
+        // })
       })
       describe('_paramsMarkup', () => {
         it('Should exist the helper method _paramsMarkup', () => {
@@ -518,18 +518,5 @@ describe('SongkickJS', () => {
         })
       })
     })
-
-    // GETTER METHODS
-    // describe('Getter methods', () => {
-    //   describe('requestUrl', () => {
-    //     it('Should exist the getter method requestUrl', () => {
-    //       expect(songkick.requestUrl).to.exist;
-    //     });
-    //     it('Should return a string with the request url', () => {
-    //       songkick.getUpcomingEvents({ from: 'artists', id: '379603' });
-    //       expect(songkick.requestUrl).to.be.equal(`${API_URL}/artists/379603/calendar.json?apikey=${API_KEY}`);
-    //     });
-    //   });
-    // });
   })
 })

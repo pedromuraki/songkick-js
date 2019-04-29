@@ -1,5 +1,7 @@
 import errors from './constants/errors'
 
+// const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
+
 class SongkickJS {
   constructor(key, isHttps) {
     this._API_KEY = key
